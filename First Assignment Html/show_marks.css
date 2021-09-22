@@ -1,0 +1,73 @@
+.heading{
+    
+    text-align: center;
+    text-transform: capitalize;
+    color: lightblue;
+}
+.img-section{
+    display: flex;
+    justify-content: space-around;
+    /* border: 1px solid black; */
+}
+.img-section >img{
+    height: 100px;
+    width: 100px;
+    border-radius: 5px
+}
+.img-section > h1{
+    color: lightblue;
+}
+.heading_marksheet{
+    margin-left: 5%;
+    color: blue;
+}
+.first-semester{
+    margin-left: 5%;
+}
+.sub1{
+    padding-left: 15px;
+}
+.sem1{
+    margin-top: 20px;
+  /* border: 1px solid red; */
+}
+.min-div{
+    background-color: lightcyan ;
+    position: absolute;
+    left: 15%;
+    top: 10%;
+}
+.sub-head{
+    width: 98px;
+}
+.sub2{
+    padding-left: 15px;
+    width: 48px;
+}
+.sub3{
+    padding-left: 15px;
+    width: 200px;
+}
+.sub4{
+    padding-left: 15px;
+    width: 150px;
+}
+.sub_O{
+    padding-left: 15px;
+    width: 125px;
+}
+.sub_D{
+    padding-left: 15px;
+    width: 150px;
+}
+.sub_C{
+    padding-left: 15px;
+    width: 170px;
+}
+.sub_S{
+    padding-left: 15px;
+    width: 153px;
+}
+.sub_F{
+    padding-left: 4px;
+}
