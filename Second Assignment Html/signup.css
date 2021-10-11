@@ -1,5 +1,5 @@
 body{
-  background-color: #d3d8fe;
+  background-image: url(./bannar4.jpg);
 }
 .form-header{
   height: 600px;
@@ -106,7 +106,7 @@ body{
   color: #beb7b7;
 }
 .per-add1,.cur-add1{
-  margin-left: 50px;
+  margin-left: 27px;
 }
 .per-add1 input,.cur-add1 input{
   margin-left: 10px;
