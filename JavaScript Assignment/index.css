@@ -1,0 +1,177 @@
+body{
+  background-image: url(./bannar4.jpg);
+  height: 900px;
+}
+.form-header{
+  height: 750px;
+  width: 800px;
+  background-color: #ffffff;
+  position: absolute;
+  left: 25%;
+  top: 10%;
+}
+.form-header >h1{
+  padding-left: 20px;
+  font-style: bold;
+}
+.form-header >p{
+  padding-left: 20px;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 200px;
+  color: #beb7b7;
+}
+.div1{
+  display: flex;
+  justify-content: space-around;
+}
+.fname > input,.mname>input,.lname>input{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 8px;
+
+}
+.fname.success input,.mname.success input,.lname.success input,.email.success input,.pass.success input,.phone.success>input,.dob.success>input,.gender.success>select,.interest.success>select,.state.success>input,.city.success>input,.zip.success>input,.country.success>input{
+  border-bottom-color: green;
+}
+.fname.error input,.mname.error input,.lname.error input,.email.error input,.pass.error input,.phone.error>input,.dob.error>input,.gender.error>select,.interest.error>select,.zip.error>input,.city.error>input,.state.error>input,.country.error>input{
+  border-bottom-color: red;
+}
+.fname i,.mname i,.lname i,.email i,.pass i,.phone i,.dob i,.gender i,.interest i,.city i,.state i,.country i,.zip i{
+  visibility: hidden;
+}
+.fname.success i.fa-check-circle,.mname.success i.fa-check-circle,.lname.success i.fa-check-circle,.email.success i.fa-check-circle,.pass.success i.fa-check-circle,.phone.success i.fa-check-circle,.dob.success i.fa-check-circle,.gender.success i.fa-check-circle,.interest.success i.fa-check-circle,.city.success i.fa-check-circle,.state.success i.fa-check-circle,.country.success i.fa-check-circle,.zip.success i.fa-check-circle{
+  color: green;
+  visibility: visible;
+
+}
+.lname.error i.fa-exclamation-circle,.fname.error i.fa-exclamation-circle,.mname.error i.fa-exclamation-circle,.email.error i.fa-exclamation-circle,.pass.error i.fa-exclamation-circle{
+  color: red;
+  visibility: visible;
+}
+.phone.error i.fa-exclamation-circle,.gender.error i.fa-exclamation-circle{
+  color: red;
+  visibility: visible;
+  margin-top: 25px;
+}
+.city.error i.fa-exclamation-circle,.state.error i.fa-exclamation-circle,.country.error i.fa-exclamation-circle,.interest.error i.fa-exclamation-circle{
+  color: red;
+  visibility: visible;
+}
+.state.error >input{
+  margin-left: 12px;
+  width: 110px;
+}
+.state.success >input{
+   margin-left: 28px;
+}
+
+.div2{
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+}
+.div2-email-pass,.div2-phone-dob,.div2-gender-interest,.div2-per,.div2-curr{
+  display: flex;
+}
+.email,.phone,.gender{
+  width: 50%;
+  margin-left: 25px;
+
+}
+.pass,.dob,.interest{
+  width: 50%;
+}
+.email >input,.pass >input,.phone>input,.dob>input,.gender>select,.interest>select{
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding: 8px;
+  width: 307px;
+}
+.phone >input,.dob>input,.gender>select,.interest>select{
+  margin-top: 25px;
+}
+.gender >select,.interest>select{
+  width: 323px;
+}
+.email.pass.phone.dob > textarea:focus, input:focus{
+  outline: none;
+}
+.gender .interest > textarea:focus, select:focus{
+  outline: none;
+}
+.city{
+  margin-left: 25px;
+  padding-right: 10px;
+}
+.state,.country,.zip{
+  padding-right: 10px;
+}
+.city >input,.state>input,.country>input,.zip>input{
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding: 8px;
+  width: 124px;
+
+}
+
+
+.per-add,.cur-add,.cap{
+  padding-left: 20px;
+  font-style: normal;
+  font-size: 20px;
+  font-weight: 200px;
+  color: #beb7b7;
+}
+.captcha1{
+  display: flex;
+    margin-left: 20px;
+}
+.captcha1 >input{
+  margin-left: 25px;
+    height: 32px;
+    margin-top: 20px;
+    width: 200px;
+}
+.captcha-btn{
+  margin-left: 30px;
+    height: 35px;
+    width: 75px;
+    margin-top: 20px;
+    background: green;
+    color: white;
+    font-size: 15px;
+    border: none;
+}
+.captcha1 i{
+  visibility: hidden;
+}
+.captcha1.success i.fa-check-circle{
+color: green;
+  visibility: visible;
+  margin-left: 25px;
+    margin-top: 25px;
+    font-size: 25px;
+}
+.valid_captcha{
+  visibility: hidden;
+}
+.valid_captcha.error{
+  visibility: visible;
+    margin-top: 25px;
+    color: red;
+    font-weight: 600;
+}
+.btn{
+  background: #8e44ad;
+  color: #ffffff;
+  padding: 10px;
+  width: 95%;
+  font-size: 17px;
+  margin-top: 10px;
+  margin-left: 18px;
+  border: none;
+}
