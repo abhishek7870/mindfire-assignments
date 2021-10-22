@@ -1,5 +1,5 @@
 body{
-  background-image: url(./bannar4.jpg);
+  background-image: url('/bannar4.jpg');
   height: 900px;
 }
 .form-header{

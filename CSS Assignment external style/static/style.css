@@ -1,5 +1,5 @@
 .main-head{
-    background-image: url(./bannar5.jpg);
+    background-image: url('/bannar5.jpg');
     background-attachment: fixed; 
     overflow: hidden;
     overflow-y: scroll;
