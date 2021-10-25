@@ -3,6 +3,14 @@
 var captcha_validation=false;
 
 $(document).ready(function(){
+
+  $('.refresh').click(function(e){
+    e.preventDefault();
+    generateCaptchaEquation();
+
+  })
+     
+
     $('.btn').click(function(e){
         e.preventDefault();
         if(checkFname() &&
@@ -14,14 +22,17 @@ $(document).ready(function(){
         checkDate() &&
         checkGender() &&
         checkInterest() &&
+        checkParmanentAddress() &&
         checkCity1() &&
         checkState1() &&
         checkCountry1() &&
         checkZipcode1() &&
+        checkCurrentAddress() &&
         checkCity2() &&
         checkState2() &&
         checkCountry2() &&
-        checkZipcode2() 
+        checkZipcode2() &&
+        captcha_validation
     ){
         if(captcha_validation)
         {
@@ -29,6 +40,7 @@ $(document).ready(function(){
           alert('Your Form is Submited');
         }
         else{
+          $('.valid_captcha2').text('Please Correct Captcha');
           $('.valid_captcha2').show();
           $('.valid_captcha2').addClass('error');
         }
@@ -42,6 +54,34 @@ $(document).ready(function(){
     })
     
 })
+
+function checkParmanentAddress(){
+  var per_address = $("#per-address").val();
+    if (per_address.length > 0) {
+      $(".address").removeClass("error");
+      $(".address").addClass("address success");
+      return true;
+    } else {
+      $(".address").removeClass("success");
+      $(".address").addClass("address error");
+      return false;
+    }
+
+}
+function checkCurrentAddress(){
+  var curr_address = $("#curr-address").val();
+     
+    if (curr_address.length > 0) {
+      $(".address").removeClass("error");
+      $(".address").addClass("address success");
+      return true;
+    } else {
+      $(".address").removeClass("success");
+      $(".address").addClass("address error");
+      return false;
+    }
+
+}
 
 function checkFname(){
     var pattern = /^[A-Za-z']+$/;
@@ -295,7 +335,6 @@ $(document).ready(function(){
          $('.valid_captcha').hide();
     }
     else if(is_valid_captcha===3){
-      console.log("dfsd");
       generateCaptchaEquation();
       $('.valid_captcha1').hide();
       $('.valid_captcha2').hide();
@@ -374,7 +413,9 @@ function submit() {
         if (resInt === expectOutput) {
           $('.valid_captcha').removeClass('error');
           $('.valid_captcha').hide();
-          $('valid_captcha2').hide();
+          $('.valid_captcha2').removeClass('error');
+          $('.valid_captcha2').hide();
+          $('.valid_captcha1').show();
           $('.captcha1').addClass('captcha1 success')
             return 2;
         }

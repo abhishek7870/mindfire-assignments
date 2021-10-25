@@ -4,7 +4,7 @@
     overflow: hidden;
     overflow-y: scroll;
     background-size: cover;
-    height: 1200px;
+    height: 1500px;
     width: 100vw;
 }
 .form-head{
@@ -70,6 +70,20 @@
 .label-name > select{
     margin-top: 15px;
     width: 230px;
+    padding: 8px;
+    border: 1px solid rgb(139, 139, 137);
+    outline-color: #2e69ff;
+}
+.label-name1{
+    width: 100%;
+    margin: 20px;
+}
+.label-name1 >label{
+    font-size: 18px;
+}
+.label-name1 >input{
+    margin-top: 15px;
+    width: 527px;
     padding: 8px;
     border: 1px solid rgb(139, 139, 137);
     outline-color: #2e69ff;

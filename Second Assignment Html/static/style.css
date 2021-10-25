@@ -1,20 +1,60 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.banner{
+  background: #ffffff;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.logo-section{
+  display: flex;
+  align-items: center;
+}
+
+.logo-section >img{
+  height: 50px;
+  width: auto;
+  padding-left: 90px;
+  padding-bottom: 10px;
+}
+.link-section{
+  margin-left: 300px;
+}
+.home,.about{
+  padding-right: 80px;
+    text-decoration: none;
+    font-size: 18px;
+}
+.contact{
+  padding-right: 100px;
+  text-decoration: none;
+  font-size: 18px;
+}
+
 body{
   background-image: url('/bannar4.jpg');
+  height: 1000px;
 }
 .form-header{
-  height: 600px;
+  height: 800px;
   width: 800px;
   background-color: #ffffff;
   position: absolute;
   left: 25%;
-  top: 10%;
+  top: 18%;
+  border-radius: 5px;
 }
 .form-header >h1{
-  padding-left: 20px;
+  padding: 20px;
   font-style: bold;
 }
 .form-header >p{
   padding-left: 20px;
+  padding-bottom: 20px;
   font-style: normal;
   font-size: 20px;
   font-weight: 200px;
@@ -29,6 +69,16 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
+
+}
+.per-address,.curr-address{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 8px;
+  width: 688px;
+  margin-left: 50px;
+  margin-bottom: 30px;
 
 }
 .div2{
@@ -80,6 +130,7 @@ body{
 }
 .div4{
   margin-top: 30px;
+  margin-bottom: 30px;
 }
 .gender{
   border-top: none;
@@ -100,6 +151,7 @@ body{
 }
 .per-add,.cur-add{
   padding-left: 20px;
+  padding-bottom: 20px;
   font-style: normal;
   font-size: 20px;
   font-weight: 200px;
@@ -107,6 +159,7 @@ body{
 }
 .per-add1,.cur-add1{
   margin-left: 27px;
+  margin-bottom: 30px;
 }
 .per-add1 input,.cur-add1 input{
   margin-left: 10px;
@@ -114,4 +167,18 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
+  width: 152px;
+}
+.button{
+  margin-left: 30px;
+  margin-top: 10px;
+  width: 744px;
+  padding: 10px;
+  color: white;
+  background-color: #28a465;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  font-size: 20px;
+
 }

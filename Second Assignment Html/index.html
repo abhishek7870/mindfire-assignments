@@ -6,6 +6,17 @@
 </head>
 
 <body>
+    <div class="banner">
+        <div class="logo-section">
+             <img src="/logo.png" alt="">
+        </div>
+        <div class="link-section">
+            <a class="home" href="#">Home</a>
+            <a class="about" href="#">About</a>
+            <a class="contact" href="#">Contact</a>
+        </div>
+
+    </div>
     <div class="form-header">
         <h1>Sign Up</h1>
         <p>Enter Your Details Below</p>
@@ -17,7 +28,7 @@
         <div class="div2">
             <div>
                 <input class="email" placeholder="Email" type="email" />
-                <input class="pass" type="password" placeholder="Passwor" />
+                <input class="pass" type="password" placeholder="Password" />
             </div>
             <div class="div3">
                 <input class="phone" placeholder="Phone" type="number" />
@@ -26,12 +37,16 @@
 
             <div class="div4">
                 <select class="gender" placeholder="gender" name="gender">
-                    <option value="">Gender</option>
+                    <option value="" disabled selected hidden>
+                        Gender
+                      </option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                 </select>
                 <select class="interest" name="Interests">
-                    <option value="" >Interests</option>
+                    <option value="" disabled selected hidden>
+                        Interests
+                      </option>
                     <option value="cricket">Sports</option>
                     <option value="Computer & Software">Computer & Software</option>
                     <option value="Computer & Software">Singing Song</option>
@@ -41,6 +56,7 @@
                 </select>
             </div>
             <p class="per-add">Permanent Address</p>
+            <input class="per-address" type="text" placeholder="Address"/>
             <div class="per-add1">
                 <input placeholder="City" type="text"/>
                 <input placeholder="State" type="text"/>
@@ -48,12 +64,14 @@
                 <input placeholder="Zip Code" type="number"/>
             </div>
             <p class="cur-add">Current Address</p>
+            <input class="curr-address" type="text" placeholder="Address"/>
             <div class="cur-add1">
                 <input placeholder="City" type="text"/>
                 <input placeholder="State" type="text"/>
                 <input placeholder="Country" type="text"/>
                 <input placeholder="Zip Code" type="number"/>
             </div>
+            <button class="button">Submit</button>
         </div>
 
     </div>

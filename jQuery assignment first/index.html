@@ -9,6 +9,15 @@
 </head>
 
 <body onload="generateCaptchaEquation()">
+    <div class="banner">
+        <div class="logo-section">
+             <img src="/logo.png" alt="">
+        </div>
+        <div class="link-section">
+            <a class="home" href="#">Home</a>
+            <a class="about" href="#">About</a>
+            <a class="contact" href="#">Contact</a>
+        </div>
     <form class="form-header" id="form">
         <h1>Sign Up</h1>
         <p>Enter Your Details Below</p>
@@ -37,7 +46,7 @@
                     <i class="fas fa-exclamation-circle"></i>
                 </div>
                 <div class="pass">
-                    <input id="pass" type="password" placeholder="Passwor"/>
+                    <input id="pass" type="password" placeholder="Password"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                 </div>
@@ -85,6 +94,11 @@
                 </div>
             </div>
             <p class="per-add">Permanent Address</p>
+            <div class="address">
+                <input class="per-address" type="text" placeholder="Address" id="per-address"/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
             <div class="div2-per">
                 <div class="city">
                     <input placeholder="City" type="text" id="city" />
@@ -108,6 +122,11 @@
                 </div>
             </div>
             <p class="cur-add">Current Address</p>
+            <div class="address">
+                <input class="curr-address" type="text" placeholder="Address" id="curr-address"/>
+                <i class="fas fa-check-circle"></i>
+                <i class="fas fa-exclamation-circle"></i>
+                </div>
             <div class="div2-curr">
                 <div class="city1">
                     <input placeholder="City" type="text" id="city1" />
@@ -136,11 +155,12 @@
             <div class="captcha1">
                 <h1 id="captcha"></h1>
                 <input type="text" id="captcha_input"/>
+                <button class="refresh">Refresh</button>
                 <button class="captcha-btn">Check</button>
                  <i class="fas fa-check-circle"></i>
                  <p class="valid_captcha" id="valid_captcha"></p>
                  <h6 class="valid_captcha1" id="valid_captcha1"></h6>
-                 <h5 class="valid_captcha2">Please correct Captcha</h5>
+                 <h5 class="valid_captcha2"></h5>
             </div>
         </div>
 
