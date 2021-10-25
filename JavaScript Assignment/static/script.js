@@ -1,4 +1,4 @@
-
+ var valid_captcha =false;
 const form = document.getElementById('form');
 const fname = document.getElementById('fname');
 const mname = document.getElementById('mname');
@@ -8,16 +8,18 @@ const pass = document.getElementById('pass');
 const phone = document.getElementById('phone');
 const dob = document.getElementById('date');
 const gender = document.getElementById('gender');
-const interest = document.getElementById('interest')
-const city = document.getElementById('city')
-const state = document.getElementById('state')
-const country = document.getElementById('country')
-const zip = document.getElementById('zip')
+const interest = document.getElementById('interest');
+const perAddress = document.getElementById('per-address');
+const city = document.getElementById('city');
+const state = document.getElementById('state');
+const country = document.getElementById('country');
+const zip = document.getElementById('zip');
 
-const city1 = document.getElementById('city1')
-const state1 = document.getElementById('state1')
-const country1 = document.getElementById('country1')
-const zip1 = document.getElementById('zip1')
+const currAddress =document.getElementById('curr-address');
+const city1 = document.getElementById('city1');
+const state1 = document.getElementById('state1');
+const country1 = document.getElementById('country1');
+const zip1 = document.getElementById('zip1');
 
 
 document.querySelector(".btn")
@@ -25,6 +27,15 @@ document.querySelector(".btn")
         e.preventDefault();
         console.log("sdfjdsf");
         checkInputs();
+        if(valid_captcha)
+        {
+
+        }
+        else{
+            const error_mess = document.getElementById('#error-mess');
+            error_mess.className='error-mess error';
+
+        }
     })
 function checkInputs() {
     const fnameValue = fname.value.trim();
@@ -37,11 +48,14 @@ function checkInputs() {
     const genderValue = gender.value.trim();
     const interestValue = interest.value.trim();
 
+    const perAddressValue=perAddress.value.trim();
+
     const cityValue = city.value.trim();
     const StateValue = state.value.trim();
     const countryValue = country.value.trim();
     const zipValue = zip.value.trim();
 
+    const currAddressValue = currAddress.value.trim();
     const cityValue1 = city1.value.trim();
     const StateValue1 = state1.value.trim();
     const countryValue1 = country1.value.trim();
@@ -108,6 +122,17 @@ function checkInputs() {
     }
 
 
+    if(perAddressValue === ''){
+        console.log("bbfmsndf");
+        setErrorForPermentAddress(perAddress);
+
+    }
+    else{
+        setSuccessForPermentAddress(perAddress);
+
+    }
+
+
 
     if (cityValue === '') {
         setErrorForAddress(city);
@@ -138,6 +163,16 @@ function checkInputs() {
     }
 
 
+    if(currAddressValue === ''){
+        console.log("bbfmsndf");
+        setErrorForPermentAddress(currAddress);
+
+    }
+    else{
+        setSuccessForPermentAddress(currAddress);
+
+    }
+
     if (cityValue1 === '') {
         setErrorForAddress(city1);
     }
@@ -167,6 +202,19 @@ function checkInputs() {
     }
 
 }
+
+
+function setErrorForPermentAddress(input){
+    const address = input.parentElement;
+    address.className = 'address error';
+
+}
+function setSuccessForPermentAddress(input){
+    const address = input.parentElement;
+    address.className = 'address success';
+
+}
+
 
 function setErrorForAddress(input) {
     const state = input.parentElement;
@@ -233,6 +281,13 @@ document.querySelector('.captcha-btn')
         } 
     })
 
+document.querySelector('.refresh')
+    .addEventListener('click',function(e){
+        e.preventDefault();
+        generateCaptchaEquation();
+
+    })
+
 const equation = ['-', '+', '*', '/'];
 let expectOutput = '';
 let captchaEquation = '';
@@ -286,12 +341,13 @@ function submit() {
     const res = document.getElementById('captcha_input').value;
     const captcha_input = document.getElementById('captcha_input');
     if (res === '') {
-        alert('Please Enter captcha Input');
+        // alert('Please Enter captcha Input');
     }
     else {
         let resInt = parseInt(res);
         if (resInt === expectOutput) {
             setSuccessForCaptcha(captcha_input);
+            valid_captcha=true;
             return true;
         }
         else{

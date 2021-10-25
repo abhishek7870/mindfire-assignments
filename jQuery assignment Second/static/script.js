@@ -29,6 +29,21 @@ $("#add-phone").click(function (e) {
   $(clonned_mob_div).insertAfter("#primary-mob");
 });
 
+$(document).on('change','#file',function(){
+    var input_var = $('#file')[0];
+    // console.log(input_var);
+  if (input_var.files && input_var.files[0])
+     console.log("sdffds");
+    {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+            $('#profile_pic').attr('src', e.target.result);
+            $('#profile_pic').html(e.target.result);
+        }
+        reader.readAsDataURL(input_var.files[0]);
+    }
+})
+
 $(document).on("click", "#add-address", function () {
   var alternative_address = $("#primary-address").clone();
   $(alternative_address).removeAttr("id");
@@ -123,6 +138,8 @@ $(document).on("click", "#submit", function () {
     
     $(".main-div").css("display", "none");
     $(".emp-details-main").show();
+    var userImage = $('#profile_pic');
+    console.log(userImage[0].currentSrc);
     var name = $("#name").val();
     var email = $("#email").val();
     var mobile1 = $(".mob");
@@ -150,6 +167,8 @@ $(document).on("click", "#submit", function () {
      console.log(display_address);
      address_seperated = display_address.split('.');
 
+
+     $('#display_profile_pic').attr('src', userImage[0].currentSrc);
     $(".name h1").html(name);
     $(".name h4").html(email);
     $(".emp-name h2").html(name);

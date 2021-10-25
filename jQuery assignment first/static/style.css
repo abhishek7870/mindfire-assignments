@@ -1,21 +1,57 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+.banner{
+  background: #ffffff;
+    height: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+.logo-section{
+  display: flex;
+  align-items: center;
+}
+.logo-section >img{
+  height: 50px;
+  width: auto;
+  padding-left: 90px;
+  padding-bottom: 10px;
+}
+.link-section{
+  margin-left: 300px;
+}
+.home,.about{
+  padding-right: 80px;
+    text-decoration: none;
+    font-size: 18px;
+}
+.contact{
+  padding-right: 100px;
+  text-decoration: none;
+  font-size: 18px;
+}
 body{
   background-image: url('/bannar4.jpg');
-  height: 900px;
+  height: 1000px;
 }
 .form-header{
-  height: 750px;
+  height: 850px;
   width: 800px;
   background-color: #ffffff;
   position: absolute;
   left: 25%;
-  top: 10%;
+  top: 17%;
 }
 .form-header >h1{
-  padding-left: 20px;
+  padding: 20px;
   font-style: bold;
 }
 .form-header >p{
   padding-left: 20px;
+  padding-bottom: 20px;
   font-style: normal;
   font-size: 20px;
   font-weight: 200px;
@@ -32,23 +68,38 @@ body{
   padding: 8px;
 
 }
-.fname.success input,.mname.success input,.lname.success input,.email.success input,.pass.success input,.phone.success>input,.dob.success>input,.gender.success>select,.interest.success>select,.state.success>input,.city.success>input,.zip.success>input,.country.success>input,.city1.success>input,.state1.success>input,.country1.success>input,.zip1.success>input{
+.fname.success input,.mname.success input,.lname.success input,.email.success input,.pass.success input,.phone.success>input,.dob.success>input,.gender.success>select,.interest.success>select,.state.success>input,.city.success>input,.zip.success>input,.country.success>input,.city1.success>input,.state1.success>input,.country1.success>input,.zip1.success>input,.address.success>input{
   border-bottom-color: green;
 }
-.fname.error input,.mname.error input,.lname.error input,.email.error input,.pass.error input,.phone.error>input,.dob.error>input,.gender.error>select,.interest.error>select,.zip.error>input,.city.error>input,.state.error>input,.country.error>input,.city1.error>input,.state1.error>input,.country1.error>input,.zip1.error>input{
+.fname.error input,.mname.error input,.lname.error input,.email.error input,.pass.error input,.phone.error>input,.dob.error>input,.gender.error>select,.interest.error>select,.zip.error>input,.city.error>input,.state.error>input,.country.error>input,.city1.error>input,.state1.error>input,.country1.error>input,.zip1.error>input,.address.error>input{
   border-bottom-color: red;
 }
-.fname i,.mname i,.lname i,.email i,.pass i,.phone i,.dob i,.gender i,.interest i,.city i,.state i,.country i,.zip i,.city1 i,.state1 i,.country1 i,.zip1 i{
+.fname i,.mname i,.lname i,.email i,.pass i,.phone i,.dob i,.gender i,.interest i,.city i,.state i,.country i,.zip i,.city1 i,.state1 i,.country1 i,.zip1 i,.address i{
   visibility: hidden;
 }
-.fname.success i.fa-check-circle,.mname.success i.fa-check-circle,.lname.success i.fa-check-circle,.email.success i.fa-check-circle,.pass.success i.fa-check-circle,.phone.success i.fa-check-circle,.dob.success i.fa-check-circle,.gender.success i.fa-check-circle,.interest.success i.fa-check-circle,.city.success i.fa-check-circle,.state.success i.fa-check-circle,.country.success i.fa-check-circle,.zip.success i.fa-check-circle,.city1.success i.fa-check-circle,.state1.success i.fa-check-circle,.country1.success i.fa-check-circle,.zip1.success i.fa-check-circle{
+.fname.success i.fa-check-circle,.address.success i.fa-check-circle,.mname.success i.fa-check-circle,.lname.success i.fa-check-circle,.email.success i.fa-check-circle,.pass.success i.fa-check-circle,.phone.success i.fa-check-circle,.dob.success i.fa-check-circle,.gender.success i.fa-check-circle,.interest.success i.fa-check-circle,.city.success i.fa-check-circle,.state.success i.fa-check-circle,.country.success i.fa-check-circle,.zip.success i.fa-check-circle,.city1.success i.fa-check-circle,.state1.success i.fa-check-circle,.country1.success i.fa-check-circle,.zip1.success i.fa-check-circle{
   color: green;
   visibility: visible;
 
 }
-.lname.error i.fa-exclamation-circle,.fname.error i.fa-exclamation-circle,.mname.error i.fa-exclamation-circle,.email.error i.fa-exclamation-circle,.pass.error i.fa-exclamation-circle{
+.lname.error i.fa-exclamation-circle,.address.error i.fa-exclamation-circle,.fname.error i.fa-exclamation-circle,.mname.error i.fa-exclamation-circle,.email.error i.fa-exclamation-circle,.pass.error i.fa-exclamation-circle{
   color: red;
   visibility: visible;
+}
+.address i.fa-check-circle,.address  i.fa-exclamation-circle{
+  position: absolute;
+  right: 12%;
+  margin-top: 10px;
+}
+.per-address,.curr-address{
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  padding: 8px;
+  width: 688px;
+  margin-left: 23px;
+  margin-bottom: 30px;
+
 }
 .phone.error i.fa-exclamation-circle,.gender.error i.fa-exclamation-circle{
   color: red;
@@ -74,6 +125,12 @@ body{
 }
 .div2-email-pass,.div2-phone-dob,.div2-gender-interest,.div2-per,.div2-curr{
   display: flex;
+}
+.div2-per,.div2-curr{
+  margin-bottom: 20px;
+}
+.div2-gender-interest{
+  margin-bottom: 25px;
 }
 .div2-curr{
   margin-left: 22px;
@@ -132,6 +189,7 @@ body{
 
 .per-add,.cur-add,.cap{
   padding-left: 20px;
+  padding-bottom: 20px;
   font-style: normal;
   font-size: 20px;
   font-weight: 200px;
@@ -144,14 +202,12 @@ body{
 .captcha1 >input{
   margin-left: 25px;
     height: 32px;
-    margin-top: 20px;
     width: 200px;
 }
 .captcha-btn{
   margin-left: 30px;
     height: 35px;
     width: 75px;
-    margin-top: 20px;
     background: green;
     color: white;
     font-size: 15px;
@@ -165,7 +221,7 @@ body{
 color: green;
   visibility: visible;
   margin-left: 25px;
-    margin-top: 25px;
+    margin-top: 5px;
     font-size: 25px;
 }
 .valid_captcha,.valid_captcha1,.valid_captcha2{
@@ -173,7 +229,7 @@ color: green;
 }
 .valid_captcha.error,.valid_captcha1.error,.valid_captcha2.error{
    visibility: visible;
-    margin-top: 25px;
+    margin-top: 10px;
     color: red;
     font-weight: 600;
 }
@@ -183,7 +239,16 @@ color: green;
   padding: 10px;
   width: 95%;
   font-size: 17px;
-  margin-top: 10px;
+  margin-top: 25px;
   margin-left: 18px;
   border: none;
+}
+.refresh{
+  margin-left: 30px;
+    height: 35px;
+    width: 75px;
+    background: green;
+    color: white;
+    font-size: 15px;
+    border: none;
 }
