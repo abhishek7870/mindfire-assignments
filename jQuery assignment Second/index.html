@@ -16,7 +16,7 @@
     <div class="pic-emp-details">
       <div class="left-side">
         <div class="profile-image">
-          <img id="profile_pic" class="profile_photo" src="abhishek.jpeg" >
+          <img id="profile_pic" class="profile_photo" src="profile.jpg" >
           <input accept="image/*" id="file" type="file" name="files[]"/>  
         </div>
       </div>
@@ -25,7 +25,6 @@
           <div class="fname">
             <h5>Full Name</h5>
             <input type="text" id="name" />
-            <span class="error-mess-name"></span>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <p></p>
@@ -33,14 +32,12 @@
           <div class="email">
             <h5>Email</h5>
             <input type="text" id="email" />
-            <span class="error-mess-email"></span>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
           </div>
           <div id="primary-mob" class="mob">
             <h5>Mobile</h5>
             <input type="number" id="mob" />
-            <span class="error-mess-mob"></span>
             <i id="add-phone" class="fas fa-plus-circle"></i>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
@@ -48,14 +45,12 @@
           <div class="pan">
             <h5>Pan Numnere</h5>
             <input type="text" id="pan" />
-            <span class="error-mess-pan"></span>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
           </div>
           <div class="aadhar">
             <h5>Aadhar Number</h5>
             <input type="text" id="aadhar" />
-            <span class="error-mess-aadhar"></span>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
           </div>
@@ -74,7 +69,6 @@
               </option>
               <option value=""></option>
             </select>
-            <span class="error-mess-country"></span>
           </div>
           <div class="state">
             <h5>State</h5>
@@ -84,17 +78,14 @@
               </option>
               <option value=""></option>
             </select>
-            <span class="error-mess-state"></span>
           </div>
           <div class="city">
             <h5>City</h5>
             <input type="text" value="" id="city" class="select_city" />
-            <span class="error-mess-city"></span>
           </div>
           <div class="pincode">
             <h5>Pincode</h5>
             <input type="number" value="" id="pincode" class="select_pincode" />
-            <span class="error-mess-pincode"></span>
           </div>
         </div>
       </div>
@@ -105,6 +96,7 @@
             <div class="captcha1">
                 <h1 id="captcha"></h1>
                 <input type="text" id="captcha_input"/>
+                <button class="refresh">Refresh</button>
                 <button class="captcha-btn">Check</button>
                  <i class="fas fa-check-circle"></i>
                  <p class="valid_captcha" id="valid_captcha"></p>

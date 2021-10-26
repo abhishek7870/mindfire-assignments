@@ -8,6 +8,10 @@ let expectOutput = '';
 let captchaEquation = '';
 
 $(document).ready(function () {
+    $('.refresh').click(function(e){
+      e.preventDefault();
+      generateCaptchaEquation();
+    })
   loadCountryStateMap();
   loadCountries($("#current_country"));
   $(".emp-details-main").hide();
@@ -28,6 +32,34 @@ $("#add-phone").click(function (e) {
 
   $(clonned_mob_div).insertAfter("#primary-mob");
 });
+
+$(document).on('change','#name',function(){
+  checkName()
+})
+$(document).on('change','#email',function(){
+  checkEmail()
+})
+$(document).on('change','.mob',function(){
+  checkMobileNumbers()
+})
+$(document).on('change','#pan',function(){
+  checkPan()
+})
+$(document).on('change','#aadhar',function(){
+  checkAadhar()
+})
+$(document).on('change','.select_country',function(){
+  checkAddress()
+})
+$(document).on('change','.select_state',function(){
+  checkAddress()
+})
+$(document).on('change','.select_city',function(){
+  checkAddress()
+})
+$(document).on('change','.select_pincode',function(){
+  checkAddress()
+})
 
 $(document).on('change','#file',function(){
     var input_var = $('#file')[0];
@@ -196,7 +228,6 @@ function checkName() {
     $(".fname").addClass("fname success");
     return true;
   } else {
-    $(".error-mess-name").html("Should contain only Characters");
     $(".error-mess-name").show();
     $(".fname").removeClass("success");
     $(".fname").addClass("fname error");
@@ -213,7 +244,6 @@ function checkEmail() {
     $(".email").addClass("email success");
     return true;
   } else {
-    $(".error-mess-email").html("Invalid Email");
     $(".error-mess-email").show();
     $(".email").removeClass("success");
     $(".email").addClass(".email error");
@@ -260,7 +290,6 @@ function checkMobile(ele) {
     $(ele).addClass("mob success");
     return true;
   } else {
-    $(".error-mess-mob").html("Invalid Mobile Number");
     $(".error-mess-mob").show();
     $(ele).removeClass("success");
     $(ele).addClass("mob error");
@@ -277,7 +306,6 @@ function checkAadhar() {
     $(".aadhar").addClass("aadhar success");
     return true;
   } else {
-    $(".error-mess-aadhar").html("Invalid Aadhar Number");
     $(".error-mess-aadhar").show();
     $(".aadhar").removeClass("success");
     $(".aadhar").addClass(".aadhar error");
@@ -294,7 +322,6 @@ function checkPan() {
     $(".pan").addClass("pan success");
     return true;
   } else {
-    $(".error-mess-pan").html("Invalid Pan Number");
     $(".error-mess-pan").show();
     $(".pan").removeClass("success");
     $(".pan").addClass(".pan error");
