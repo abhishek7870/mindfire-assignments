@@ -37,10 +37,10 @@
 
 body{
   background-image: url('/bannar4.jpg');
-  height: 1000px;
+  height: 1050px;
 }
 .form-header{
-  height: 800px;
+  height: 900px;
   width: 800px;
   background-color: #ffffff;
   position: absolute;
@@ -97,7 +97,7 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 50px;
+  margin-left: 46px;
   width: 300px;
 }
 .pass{
@@ -105,7 +105,7 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 78px;
+  margin-left: 72px;
   width: 300px;
 }
 .phone{
@@ -113,7 +113,7 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 50px;
+  margin-left: 44px;
   width: 300px;
 
 }
@@ -122,23 +122,33 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 78px;
+  margin-left: 230px;
   width: 300px;
+}
+.div3 >h3,.div4>h3{
+  margin-left: 135px;
 }
 .div3{
   margin-top: 30px;
+  display: flex;
+  align-items: center;
 }
 .div4{
   margin-top: 30px;
   margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+.div5{
+  margin-top: 25px;
 }
 .gender{
   border-top: none;
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 50px;
-  width: 310px;
+  margin-left: 74px;
+  width: 315px;
 
 }
 .interest{
@@ -146,7 +156,7 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 78px;
+  margin-left: 254px;
   width: 310px;
 }
 .per-add,.cur-add{

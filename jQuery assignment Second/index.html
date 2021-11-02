@@ -3,7 +3,7 @@
 
 <head>
   <title>employee registation form</title>
-  <link rel="icon" type="image/png" href="/favicon.png" />
+  <link rel="icon" type="image/png" href="/images/favicon.png" />
   <link rel="stylesheet" href="static/style.css" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"
@@ -16,7 +16,7 @@
     <div class="pic-emp-details">
       <div class="left-side">
         <div class="profile-image">
-          <img id="profile_pic" class="profile_photo" src="profile.jpg" >
+          <img id="profile_pic" class="profile_photo" src="/images/profile.jpg" >
           <input accept="image/*" id="file" type="file" name="files[]"/>  
         </div>
       </div>
@@ -24,35 +24,39 @@
         <div class="card-body">
           <div class="fname">
             <h5>Full Name</h5>
-            <input type="text" id="name" />
+            <input type="text" id="name" onblur="checkName(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <p></p>
+            <span class="error-mess-name"></span>
           </div>
           <div class="email">
             <h5>Email</h5>
-            <input type="text" id="email" />
+            <input type="text" id="email" onblur="checkEmail(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-email"></span>
           </div>
           <div id="primary-mob" class="mob">
             <h5>Mobile</h5>
-            <input type="number" id="mob" />
+            <input type="number" id="mob" onblur="checkMobileNumbers()"/>
             <i id="add-phone" class="fas fa-plus-circle"></i>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-mob"></span>
           </div>
           <div class="pan">
-            <h5>Pan Numnere</h5>
-            <input type="text" id="pan" />
+            <h5>Pan Number</h5>
+            <input type="text" id="pan" onblur="checkPan(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-pan"></span>
           </div>
           <div class="aadhar">
             <h5>Aadhar Number</h5>
-            <input type="text" id="aadhar" />
+            <input type="text" id="aadhar" onblur="checkAadhar(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-aadhar"></span>
           </div>
         </div>
       </div>
@@ -69,6 +73,9 @@
               </option>
               <option value=""></option>
             </select>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-country"></span>
           </div>
           <div class="state">
             <h5>State</h5>
@@ -78,30 +85,36 @@
               </option>
               <option value=""></option>
             </select>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-state"></span>
           </div>
           <div class="city">
             <h5>City</h5>
-            <input type="text" value="" id="city" class="select_city" />
+            <input type="text" value="" id="city" class="select_city"/>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-city"></span>
           </div>
           <div class="pincode">
             <h5>Pincode</h5>
-            <input type="number" value="" id="pincode" class="select_pincode" />
+            <input type="number" value="" id="pincode" class="select_pincode"/>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-pincode"></span>
           </div>
         </div>
       </div>
       <button class="add-link" id="add-address">Add Address</button>
     </div>
     <div class="btn-submit">
-      <h1 class="cap">captcha</h1>
+      <h1 class="cap">Captcha</h1>
             <div class="captcha1">
                 <h1 id="captcha"></h1>
                 <input type="text" id="captcha_input"/>
                 <button class="refresh">Refresh</button>
-                <button class="captcha-btn">Check</button>
                  <i class="fas fa-check-circle"></i>
-                 <p class="valid_captcha" id="valid_captcha"></p>
-                 <h6 class="valid_captcha1" id="valid_captcha1"></h6>
-                 <h5 class="valid_captcha2">Please correct Captcha</h5>
+                 <p class="captcha-error-mess"></p>
             </div>
 
        <button id="submit">Submit</button>

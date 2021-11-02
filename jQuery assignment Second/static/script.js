@@ -11,6 +11,8 @@ $(document).ready(function () {
     $('.refresh').click(function(e){
       e.preventDefault();
       generateCaptchaEquation();
+      $('.captcha-error-mess').hide();
+      $('.captcha1').removeClass('success');
     })
   loadCountryStateMap();
   loadCountries($("#current_country"));
@@ -29,37 +31,14 @@ $("#add-phone").click(function (e) {
   $(add_phone).addClass("fa-trash");
   $(add_phone).removeAttr("id");
   $(add_phone).addClass("remove-phone");
+  $(clonned_mob_div).removeClass('success');
+  $(clonned_mob_div).removeClass('error');
+  $(clonned_mob_div).find('.error-mess-mob').hide();
 
   $(clonned_mob_div).insertAfter("#primary-mob");
 });
 
-$(document).on('change','#name',function(){
-  checkName()
-})
-$(document).on('change','#email',function(){
-  checkEmail()
-})
-$(document).on('change','.mob',function(){
-  checkMobileNumbers()
-})
-$(document).on('change','#pan',function(){
-  checkPan()
-})
-$(document).on('change','#aadhar',function(){
-  checkAadhar()
-})
-$(document).on('change','.select_country',function(){
-  checkAddress()
-})
-$(document).on('change','.select_state',function(){
-  checkAddress()
-})
-$(document).on('change','.select_city',function(){
-  checkAddress()
-})
-$(document).on('change','.select_pincode',function(){
-  checkAddress()
-})
+
 
 $(document).on('change','#file',function(){
     var input_var = $('#file')[0];
@@ -76,10 +55,21 @@ $(document).on('change','#file',function(){
     }
 })
 
+
+
 $(document).on("click", "#add-address", function () {
   var alternative_address = $("#primary-address").clone();
   $(alternative_address).removeAttr("id");
-  console.log($(alternative_address).find('input').val(''));
+  $(alternative_address).find('.country').removeClass('success');
+  $(alternative_address).find('.state').removeClass('success');
+  $(alternative_address).find('.city').removeClass('success');
+  $(alternative_address).find('.pincode').removeClass('success');
+  $(alternative_address).find('.country').removeClass('error');
+  $(alternative_address).find('.state').removeClass('error');
+  $(alternative_address).find('.city').removeClass('error');
+  $(alternative_address).find('.pincode').removeClass('error');
+  $(alternative_address).find('.select_city').val('');
+  $(alternative_address).find('.select_pincode').val('');
   var new_picode = $(alternative_address).find(".pincode");
   var delete_btn = '<button class="delete">Delete</button>';
   $(delete_btn).insertAfter(new_picode);
@@ -92,13 +82,15 @@ $(document).on("click", ".remove-phone", function () {
   $(this).parent(".mob").remove();
 });
 
+
+
 function loadStates(country_field) {
   var parent_div = $(country_field).parents('.address');
   var state_field = $(parent_div[0]).find('.select_state');
   var country_field_value = $(country_field).val();
 
   var state_options = "<option value=''>Choose Your</option>";
-  $.getJSON("states.json", function (result) {
+  $.getJSON("static/states.json", function (result) {
     $.each(result, function (i, states) {
       if (country_field_value == states.country_id) {
         state_options +=
@@ -109,9 +101,10 @@ function loadStates(country_field) {
   });
 }
 
+
 function loadCountries(country_field) {
   var country_options = "";
-  $.getJSON("countries.json", function (result) {
+  $.getJSON("static/countries.json", function (result) {
     $.each(result, function (j, countries) {
       country_options +=
         "<option value='" +
@@ -124,15 +117,14 @@ function loadCountries(country_field) {
   });
 }
 
+
 function loadCountryStateMap() {
-  $.getJSON("countries.json", function (countries) {
+  $.getJSON("static/countries.json", function (countries) {
     for (let i = 0; i < countries.length; i++) {
       country_map.set("" + countries[i].id, countries[i].name);
     }
-
-    //   console.log(country_map);
   });
-  $.getJSON("states.json", function (states) {
+  $.getJSON("static/states.json", function (states) {
     for (let i = 0; i < states.length; i++) {
       state_map.set(states[i].id, states[i].name);
     }
@@ -148,6 +140,7 @@ $(document).on("click", ".delete", function () {
   $(parent).remove();
 });
 
+
 $(document).on("click", "#submit", function () {
   $(".error-mess-name").hide();
   $(".error-mess-email").hide();
@@ -158,16 +151,17 @@ $(document).on("click", "#submit", function () {
   $("error-mess-country").hide();
   $("error-mess-city").hide();
   $("error-mess-pincode").hide();
-  if (
-    checkName() &&
-    checkEmail() &&
-    checkMobileNumbers() &&
-    checkPan() &&
-    checkAadhar() &&
-     checkAddress() &&
-    captcha_validation
-  ) {
-    
+ 
+   var name=checkName($("#name"));
+   var email=checkEmail($("#email"));
+   var mobile=checkMobileNumbers();
+   var panNumber=checkPan($("#pan"));
+   var aadharNumber=checkAadhar("#aadhar");
+   var is_valid_captcha = checkCaptcha();
+   var address=checkAddress();
+
+
+  if(name && email && mobile && panNumber && aadharNumber && is_valid_captcha && address){
     $(".main-div").css("display", "none");
     $(".emp-details-main").show();
     var userImage = $('#profile_pic');
@@ -218,16 +212,31 @@ $(document).on("click", "#submit", function () {
   }
 });
 
-function checkName() {
+$(document).on('blur', '.country', function(){
+  checkCountry(this);
+});
+$(document).on('blur', '.state', function(){
+  checkState(this);
+});
+$(document).on('blur', '.city', function(){
+  checkCity(this);
+});
+$(document).on('blur', '.pincode', function(){
+  checkPincode(this);
+});
+
+
+function checkName(ele) {
   var pattern =
     /^(?:((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-.\s])){1,}(['’,\-\.]){0,1}){2,}(([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-. ]))*(([ ]+){0,1}(((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){1,})(['’\-,\.]){0,1}){2,}((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){2,})?)*)$/;
-  var name = $("#name").val();
+  var name = $(ele).val();
   if (pattern.test(name) && name !== "") {
     $(".error-mess-name").hide();
     $(".fname").removeClass("error");
     $(".fname").addClass("fname success");
     return true;
   } else {
+    $('.error-mess-name').html("Full name should only contain alphabets and must be 2-30 characters long.");
     $(".error-mess-name").show();
     $(".fname").removeClass("success");
     $(".fname").addClass("fname error");
@@ -235,15 +244,16 @@ function checkName() {
   }
 }
 
-function checkEmail() {
+function checkEmail(ele) {
   var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-  var email = $("#email").val();
+  var email = $(ele).val();
   if (pattern.test(email) && email !== "") {
     $(".error-mess-email").hide();
     $(".email").removeClass("error");
     $(".email").addClass("email success");
     return true;
   } else {
+    $('.error-mess-email').html('Please provide a valid email address.');
     $(".error-mess-email").show();
     $(".email").removeClass("success");
     $(".email").addClass(".email error");
@@ -251,22 +261,37 @@ function checkEmail() {
   }
 }
 
+
 function checkMobileNumbers()
 {
+
+  let mobile_type=true;
   var number_fields = $('.mob');
+  console.log(number_fields);
   for (var i=0; i<number_fields.length; i++)
   {
     if (!checkMobile(number_fields[i]))
-      return false;
+      {
+          mobile_type=false;
+      }
+    else{
+      
+    }
   }
-  return true;
+  if(mobile_type){
+     return true;
+  }
+  else{
+    return false;
+  }
 }
+
 
 function checkAddress(){
   var address_vields = $(".address");
   for(var i=0;i<address_vields.length;i++){
       if(
-        checkCountry($(address_vields[i]).find('.country')) && 
+      checkCountry($(address_vields[i]).find('.country')) && 
       checkState($(address_vields[i]).find('.state')) && 
       checkCity($(address_vields[i]).find('.city')) && 
       checkPincode($(address_vields[i]).find('.pincode'))
@@ -284,28 +309,31 @@ function checkAddress(){
 function checkMobile(ele) {
   var mobile = $(ele).find('input').val();
   var pattern = /^[^0-1][0-9]{9}$/;
+  console.log("ssss");
   if (pattern.test(mobile) && mobile != "") {
     $(".error-mess-mob").hide();
     $(ele).removeClass("error");
     $(ele).addClass("mob success");
     return true;
   } else {
-    $(".error-mess-mob").show();
+    $(ele).find('.error-mess-mob').html('Please provide a valid phone number.');
+    $(ele).find(".error-mess-mob").show();
     $(ele).removeClass("success");
     $(ele).addClass("mob error");
     return false;
   }
 }
 
-function checkAadhar() {
-  var pattern = /^[2-9]{1}[0-9]{3}\s{1}[0-9]{4}\s{1}[0-9]{4}$/;
-  var aadhar = $("#aadhar").val();
-  if (pattern.test(aadhar) && aadhar != "") {
+function checkAadhar(ele) {
+  var pattern = /^\d+$/;
+  var aadhar = $(ele).val();
+  if (pattern.test(aadhar) && aadhar.length===12) {
     $(".error-mess-aadhar").hide();
     $(".aadhar").removeClass("error");
     $(".aadhar").addClass("aadhar success");
     return true;
   } else {
+    $('.error-mess-aadhar').html("Please provide a valid aadhar number.");
     $(".error-mess-aadhar").show();
     $(".aadhar").removeClass("success");
     $(".aadhar").addClass(".aadhar error");
@@ -313,15 +341,16 @@ function checkAadhar() {
   }
 }
 
-function checkPan() {
+function checkPan(ele) {
   var pattern = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
-  var panNumber = $("#pan").val();
+  var panNumber = $(ele).val();
   if (pattern.test(panNumber) && panNumber != "") {
     $(".error-mess-pan").hide();
     $(".pan").removeClass("error");
     $(".pan").addClass("pan success");
     return true;
   } else {
+    $('.error-mess-pan').html("Please provide a valid pan number.");
     $(".error-mess-pan").show();
     $(".pan").removeClass("success");
     $(".pan").addClass(".pan error");
@@ -331,20 +360,18 @@ function checkPan() {
 
 function checkCountry(ele) {
   var country = $(ele).find('.select_country').val();
-
+  console.log(country);
   if (country > 0) {
     $(ele).find(".error-mess-country").hide();
     $(ele).removeClass("error");
-    $(ele).addClass("country success");
+    $(ele).addClass("success");
     console.log("pass" , ele);
     return true;
   } else {
-    $(ele).find(".error-mess-country").html("Please Choose Your Country");
+    $(ele).find(".error-mess-country").html("Please choose your country.");
     $(ele).find(".error-mess-country").show();
     $(ele).removeClass("success");
-    $(ele).addClass(".country error");
-
-    console.log("failed", ele);
+    $(ele).addClass("error");
     return false;
   }
 }
@@ -357,10 +384,10 @@ function checkState(ele) {
     $(ele).addClass("state success");
     return true;
   } else {
-    $(ele).find(".error-mess-state").html("Please Choose Your State");
+    $(ele).find(".error-mess-state").html("Please choose your state.");
     $(ele).find(".error-mess-state").show();
     $(ele).removeClass("success");
-    $(ele).addClass(".state error");
+    $(ele).addClass("error");
     return false;
   }
 }
@@ -368,14 +395,13 @@ function checkState(ele) {
 function checkCity(ele) {
   var pattern = /^[a-zA-Z]*$/;
   var city = $(ele).find('.select_city').val();
-  console.log(city);
-  if (pattern.test(city) && city !== "") {
+  if (pattern.test(city) && city.length>2) {
     $(ele).find(".error-mess-city").hide();
     $(ele).removeClass("error");
     $(ele).addClass("city success");
     return true;
   } else {
-    $(ele).find(".error-mess-city").html("Should contain only Characters");
+    $(ele).find(".error-mess-city").html("Please provide your city name.");
     $(ele).find(".error-mess-city").show();
     $(ele).removeClass("success");
     $(ele).addClass("city error");
@@ -392,7 +418,7 @@ function checkPincode(ele) {
     $(ele).addClass("pincode success");
     return true;
   } else {
-    $(ele).find(".error-mess-pincode").html("Should contain only Six Digit");
+    $(ele).find(".error-mess-pincode").html("Please provide your pincode.");
     $(ele).find(".error-mess-pincode").show();
     $(ele).removeClass("success");
     $(ele).addClass("pincode error");
@@ -400,26 +426,6 @@ function checkPincode(ele) {
   }
 }
 
-//captcha 
-$(document).on('click','.captcha-btn',function(e){
-  e.preventDefault();
-  var is_valid_captcha = checkCaptcha();
-
-  if (is_valid_captcha===1) {
-        $('.valid_captcha').hide();
-  }
-  else if(is_valid_captcha===3){
-    generateCaptchaEquation();
-    $('.valid_captcha1').hide();
-    $('.valid_captcha2').hide();
-    $('.valid_captcha').show();
-    $('.valid_captcha').text("Please Enter Valid Captcha");
-    $('.valid_captcha').addClass('valid_captcha error');
-  }
-  else{
-    captcha_validation=is_valid_captcha;
-  }
-});
 
 
 function getRandomArbitrary(min, max) {
@@ -442,6 +448,10 @@ function generateCaptchaEquation() {
            num1 -= num1 % num2
        }
    }
+   if(operator === equation[2]){
+    num1= Math.floor(getRandomArbitrary(1, 9));
+    num2=  Math.floor(getRandomArbitrary(1, 9));
+  }
    captchaEquation = num1 + " " + operator + " " + num2;
    expectOutput = claculateOutput(num1, num2, operator);
    $("#captcha").text(captchaEquation);
@@ -472,21 +482,19 @@ function checkCaptcha() {
    const res = $('#captcha_input').val();
    let resInt = parseInt(res);
    if (isNaN(resInt)) {
-     $('.valid_captcha1').text("Please Enter Captcha");
-     $('.valid_captcha1').addClass('valid_captcha1 error'); 
-     return 1;
+     $('.captcha-error-mess').text("Please enter captcha");
+     return false;
    }
    else {
      console.log(resInt);
        if (resInt === expectOutput) {
-         $('.valid_captcha').removeClass('error');
-         $('.valid_captcha').hide();
-         $('valid_captcha2').hide();
+         $('.captcha-error-mess').hide();
          $('.captcha1').addClass('captcha1 success')
-           return 2;
+           return true;
        }
        else{
-           return 3;
+        $('.captcha-error-mess').text("Invalid captcha");
+        return false;
        }
    }
 
