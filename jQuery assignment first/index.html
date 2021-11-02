@@ -11,77 +11,89 @@
 <body onload="generateCaptchaEquation()">
     <div class="banner">
         <div class="logo-section">
-             <img src="/logo.png" alt="">
+             <img src="/images/logo.png" alt="">
         </div>
         <div class="link-section">
             <a class="home" href="#">Home</a>
             <a class="about" href="#">About</a>
             <a class="contact" href="#">Contact</a>
         </div>
+    </div>
     <form class="form-header" id="form">
         <h1>Sign Up</h1>
-        <p>Enter Your Details Below</p>
+        <p>Enter your Details Below</p>
         <div class="div1">
             <div class="fname">
-                <input type="text" placeholder="First Name" id="fname" />
+                <input type="text" placeholder="First Name" id="fname" onblur="checkFname(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-fname">First name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
             <div class="mname">
-                <input placeholder="Middle Name" id="mname" />
+                <input placeholder="Middle Name" id="mname" onblur="checkMname(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-mname">Middle name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
             <div class="lname">
-                <input placeholder="Last Name" id="lname" />
+                <input placeholder="Last Name" id="lname" onblur="checkLname(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-lname">Last name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
         </div>
         <div class="div2">
             <div class="div2-email-pass">
                 <div class="email">
-                    <input placeholder="Email" type="email" id="email" />
+                    <input placeholder="Email" type="email" id="email" onblur="checkEmail(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-email">Please provide a valid email address.</span>
                 </div>
                 <div class="pass">
-                    <input id="pass" type="password" placeholder="Password"/>
+                    <input id="pass" type="password" placeholder="Password" onblur="checkPassword(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-pass">Password should be 4-12 characters long.</span>
                 </div>
             </div>
 
             <div class="div2-phone-dob">
                 <div class="phone">
-                    <input placeholder="Phone" type="number" id="phone" />
+                    <input placeholder="Phone" type="number" id="phone" onblur="checkNumber(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-phone">Please provide a valid phone number.</span>
                 </div>
-                <div class="dob">
-                    <input placeholder="DOB" type="date" id="date" />
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                </div>
-            </div>
-
-            <div class="div2-gender-interest">
                 <div class="gender">
-                    <select placeholder="gender" name="gender" id="gender">
+                    <select placeholder="gender" name="gender" id="gender" onblur="checkGender(this)">
                         <option value="" disabled selected hidden>
                             Gender
                           </option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
+                        <option value="Female">Other</option>
                     </select>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-gender">Please select your gender.</span>
                 </div>
+            </div>
+            <div class="birthday">
+                <h3>Date of Birth</h3>
+                <div class="dob">
+                    <input placeholder="DOB" type="date" id="date" max="2021-11-30" onblur="checkDate(this)"/>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-dob">Please provide your DOB.</span>
+                </div>
+
+            </div>
+
+            <div class="div2-gender-interest">
+                <h3>Hobbies</h3>
                 <div class="interest">
-                    <select name="Interests" placeholder="Interests" id="interest">
-                        <option value="" disabled selected hidden>
-                            Interests
-                          </option>
+                    <select name="Interests" placeholder="Interests" id="interest" multiple onblur="checkInterest(this)">
                         <option value="cricket">Sports</option>
                         <option value="Computer & Software">Computer & Software</option>
                         <option value="Computer & Software">Singing Song</option>
@@ -91,76 +103,89 @@
                     </select>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-interest">Please select your interests.</span>
                 </div>
             </div>
             <p class="per-add">Permanent Address</p>
-            <div class="address">
-                <input class="per-address" type="text" placeholder="Address" id="per-address"/>
+            <div class="permanent_address">
+                <input class="per-address" type="text" placeholder="Address" id="per-address" onblur="checkParmanentAddress(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-address">Please provide your house number and area.</span>
             </div>
             <div class="div2-per">
                 <div class="city">
-                    <input placeholder="City" type="text" id="city" />
+                    <input placeholder="City" type="text" id="city" onblur="checkCity1(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-city">Please provide your city name.City name should only contain alphabets.</span>
                 </div>
                 <div class="state">
-                    <input placeholder="State" type="text" id="state" />
+                    <input placeholder="State" type="text" id="state" onblur="checkState1(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-state">Please provide your state name.State name should only contain alphabets.</span>
                 </div>
+            </div>
+            <div class="div2-per">
                 <div class="country">
-                    <input placeholder="Country" type="text" id="country" />
+                    <input placeholder="Country" type="text" id="country" onblur="checkCountry1(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-country">Please provide your country name.Country name should only contain alphabets.</span>
                 </div>
                 <div class="zip">
-                    <input placeholder="Zip Code" type="number" id="zip" />
+                    <input placeholder="Zip Code" type="number"3 id="zip" onblur="checkZipcode1(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-zip">Please provide your pincode.</span>
                 </div>
             </div>
             <p class="cur-add">Current Address</p>
-            <div class="address">
-                <input class="curr-address" type="text" placeholder="Address" id="curr-address"/>
-                <i class="fas fa-check-circle"></i>
-                <i class="fas fa-exclamation-circle"></i>
-                </div>
+            <div class="current_address">
+            <input class="curr-address" type="text" placeholder="Address" id="curr-address" onblur="checkCurrentAddress(this)"/>
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-address">Please provide your house number and area.</span>
+            </div>
+            
             <div class="div2-curr">
                 <div class="city1">
-                    <input placeholder="City" type="text" id="city1" />
+                    <input placeholder="City" type="text" id="city1" onblur="checkCity2(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-city">Please provide your city name.City name should only contain alphabets.</span>
                 </div>
                 <div class="state1">
-                    <input placeholder="State" type="text" id="state1" />
+                    <input placeholder="State" type="text" id="state1" onblur="checkState2(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-state">Please provide your state name.State name should only contain alphabets.</span>
                 </div>
+            </div>
+            <div class="div2-curr">
                 <div class="country1">
-                    <input placeholder="Country" type="text" id="country1" />
+                    <input placeholder="Country" type="text" id="country1" onblur="checkCountry2(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-country">Please provide your country name.Country name should only contain alphabets.</span>
                 </div>
                 <div class="zip1">
-                    <input placeholder="Zip Code" type="number" id="zip1" />
+                    <input placeholder="Zip Code" type="number" id="zip1" onblur="checkZipcode2(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-zip">Please provide your pincode.</span>
                 </div>
             </div>
         </div>
         <div>
-            <h1 class="cap">captcha</h1>
+            <h1 class="cap">Captcha</h1>
             <div class="captcha1">
                 <h1 id="captcha"></h1>
                 <input type="text" id="captcha_input"/>
-                <button class="refresh">Refresh</button>
-                <button class="captcha-btn">Check</button>
-                 <i class="fas fa-check-circle"></i>
-                 <p class="valid_captcha" id="valid_captcha"></p>
-                 <h6 class="valid_captcha1" id="valid_captcha1"></h6>
-                 <h5 class="valid_captcha2"></h5>
+                <button id="refresh"class="refresh">Refresh</button>
+                <i class="fas fa-check-circle"></i>
+                 <p class="error_mess" id="valid_captcha"></p>
             </div>
         </div>
 

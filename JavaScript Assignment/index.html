@@ -11,31 +11,35 @@
 <body onload="generateCaptchaEquation()">
     <div class="banner">
         <div class="logo-section">
-             <img src="/logo.png" alt="">
+             <img src="/images/logo.png" alt="">
         </div>
         <div class="link-section">
             <a class="home" href="#">Home</a>
             <a class="about" href="#">About</a>
             <a class="contact" href="#">Contact</a>
         </div>
+    </div>
     <form class="form-header" id="form">
         <h1>Sign Up</h1>
-        <p>Enter Your Details Below</p>
+        <p>Enter your Details Below</p>
         <div class="div1">
             <div class="fname">
                 <input type="text" placeholder="First Name" id="fname" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-fname">First name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
             <div class="mname">
                 <input placeholder="Middle Name" id="mname" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-mname">Middle name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
             <div class="lname">
                 <input placeholder="Last Name" id="lname" />
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-lname">Last name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
         </div>
         <div class="div2">
@@ -44,11 +48,13 @@
                     <input placeholder="Email" type="email" id="email" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-email">Please provide a valid email address.</span>
                 </div>
                 <div class="pass">
-                    <input id="pass" type="text" placeholder="Password" />
+                    <input id="pass" type="password" placeholder="Password" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-pass">Password should be 4-12 characters long.</span>
                 </div>
             </div>
 
@@ -57,27 +63,37 @@
                     <input placeholder="Phone" type="number" id="phone" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-phone">Please provide a valid phone number.</span>
                 </div>
-                <div class="dob">
-                    <input placeholder="DOB" type="date" id="date" />
-                    <i class="fas fa-check-circle"></i>
-                    <i class="fas fa-exclamation-circle"></i>
-                </div>
-            </div>
-
-            <div class="div2-gender-interest">
                 <div class="gender">
                     <select placeholder="gender" name="gender" id="gender">
-                        <option value="">Gender</option>
+                        <option value="" disabled selected hidden>
+                            Gender
+                          </option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
+                        <option value="Female">Other</option>
                     </select>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-gender">Please select your gender.</span>
                 </div>
+            </div>
+            <div class="birthday">
+                <h3>Date of Birth</h3>
+                <div class="dob">
+                    <input placeholder="DOB" type="date" id="date" max="2015-1-1"/>
+                    <i class="fas fa-check-circle"></i>
+                    <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-dob">Please provide your DOB.</span>
+                </div>
+
+            </div>
+
+            <div class="div2-gender-interest">
+                <h3>Hobbies</h3>
                 <div class="interest">
-                    <select name="Interests" placeholder="Interests" id="interest">
-                        <option value="">Interests</option>
+                    <select name="Interests" placeholder="Interests" id="interest" multiple>
                         <option value="cricket">Sports</option>
                         <option value="Computer & Software">Computer & Software</option>
                         <option value="Computer & Software">Singing Song</option>
@@ -87,76 +103,89 @@
                     </select>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-interest">Please select your interests.</span>
                 </div>
             </div>
             <p class="per-add">Permanent Address</p>
-            <div class="address">
+            <div class="permanent_address">
                 <input class="per-address" type="text" placeholder="Address" id="per-address"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
+                <span class="error-mess-address">Please provide your house number and area.</span>
             </div>
             <div class="div2-per">
                 <div class="city">
                     <input placeholder="City" type="text" id="city" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-city">Please provide your city name.City name should only contain alphabets. </span>
                 </div>
                 <div class="state">
                     <input placeholder="State" type="text" id="state" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-state">Please provide your state name.State name should only contain alphabets.</span>
                 </div>
+            </div>
+            <div class="div2-per">
                 <div class="country">
                     <input placeholder="Country" type="text" id="country" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-country">Please provide your country name.Country name should only contain alphabets.</span>
                 </div>
                 <div class="zip">
-                    <input placeholder="Zip Code" type="number" id="zip" />
+                    <input placeholder="Zip Code" type="number"3 id="zip" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-zip">Please provide your pincode.</span>
                 </div>
             </div>
             <p class="cur-add">Current Address</p>
-            <div class="address">
+            <div class="current_address">
             <input class="curr-address" type="text" placeholder="Address" id="curr-address"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
+            <span class="error-mess-address">Please provide your house number and area.</span>
             </div>
             
             <div class="div2-curr">
-                <div class="city">
+                <div class="city1">
                     <input placeholder="City" type="text" id="city1" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-city">Please provide your city name.City name should only contain alphabets.</span>
                 </div>
-                <div class="state">
+                <div class="state1">
                     <input placeholder="State" type="text" id="state1" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-state">Please provide your state name.State name should only contain alphabets.</span>
                 </div>
-                <div class="country">
+            </div>
+            <div class="div2-curr">
+                <div class="country1">
                     <input placeholder="Country" type="text" id="country1" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-country">Please provide your country name.Country name should only contain alphabets.</span>
                 </div>
-                <div class="zip">
+                <div class="zip1">
                     <input placeholder="Zip Code" type="number" id="zip1" />
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
+                    <span class="error-mess-zip">Please provide your pincode.</span>
                 </div>
             </div>
         </div>
         <div>
-            <h1 class="cap">captcha</h1>
+            <h1 class="cap">Captcha</h1>
             <div class="captcha1">
                 <h1 id="captcha"></h1>
                 <input type="text" id="captcha_input"/>
-                <button class="refresh">Refresh</button>
-                <button class="captcha-btn">Submit</button>
+                <button id="refresh" type="submit" class="refresh">Refresh</button>
                 <i class="fas fa-check-circle"></i>
-                 <p class="valid_captcha" id="valid_captcha">Please Enter Valid Captcha</p>
-                 <p class="error_mess" id="error-mess">Please Enter Captcha</p>
+                 <p class="valid_captcha" id="valid_captcha"></p>
             </div>
         </div>
 

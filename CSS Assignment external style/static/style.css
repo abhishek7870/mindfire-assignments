@@ -1,5 +1,5 @@
 .main-head{
-    background-image: url('/bannar5.jpg');
+    background-image: url('/images/bannar5.jpg');
     background-attachment: fixed; 
     overflow: hidden;
     overflow-y: scroll;
@@ -92,6 +92,8 @@
 .checkbox{
     width: 50%;
     margin:20px;
+    display: flex;
+    align-items: center;
 }
 .checkbox > label{
     font-size: 18px;
@@ -99,7 +101,8 @@
 .checkbox > input{
     width: 20px;
     height: 20px;
-    margin-top: 14px;
+    margin-top: 7px;
+    margin-left: 14px;
 }
 .button{
     margin-left: 20px;

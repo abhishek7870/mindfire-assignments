@@ -36,16 +36,17 @@
 
 
 body{
-  background-image: url('/bannar4.jpg');
-  height: 1100px;
+  background-image: url('/images/bannar4.jpg');
+  height: 1270px;
 }
 .form-header{
-  height: 930px;
+  height: 1115px;
   width: 800px;
   background-color: #ffffff;
   position: absolute;
   left: 25%;
   top: 17%;
+  border-radius: 5px;
 }
 .form-header >h1{
   padding: 20px;
@@ -57,7 +58,6 @@ body{
   font-style: normal;
   font-size: 20px;
   font-weight: 200px;
-  color: #beb7b7;
 }
 .div1{
   display: flex;
@@ -70,21 +70,31 @@ body{
   padding: 8px;
 
 }
-.fname.success input,.mname.success input,.lname.success input,.email.success input,.pass.success input,.phone.success>input,.dob.success>input,.gender.success>select,.interest.success>select,.state.success>input,.city.success>input,.zip.success>input,.country.success>input,.address.success >input{
+.fname.success input,.mname.success input,.lname.success input,.email.success input,.pass.success input,.phone.success>input,.dob.success>input,.gender.success>select,.interest.success>select,.state.success>input,.city.success>input,.zip.success>input,.country.success>input,.permanent_address.success >input,.current_address.success>input,.state1.success>input,.city1.success>input,.zip1.success>input,.country1.success>input{
   border-bottom-color: green;
 }
-.fname.error input,.mname.error input,.lname.error input,.email.error input,.pass.error input,.phone.error>input,.dob.error>input,.gender.error>select,.interest.error>select,.zip.error>input,.city.error>input,.state.error>input,.country.error>input,.address.error>input{
+.fname.error input,.mname.error input,.lname.error input,.email.error input,.pass.error input,.phone.error>input,.dob.error>input,.gender.error>select,.interest.error>select,.zip.error>input,.city.error>input,.state.error>input,.country.error>input,.permanent_address.error>input,.current_address.error>input,.city1.error>input,.state1.error>input,.country1.error>input,.zip1.error>input{
   border-bottom-color: red;
 }
-.fname i,.mname i,.lname i,.email i,.pass i,.phone i,.dob i,.gender i,.interest i,.city i,.state i,.country i,.zip i{
+.fname i,.mname i,.lname i,.email i,.pass i,.phone i,.dob i,.gender i,.interest i,.city i,.state i,.country i,.zip i,.city1 i,.state1 i,.country1 i,.zip1 i{
   visibility: hidden;
 }
-.fname.success i.fa-check-circle,.address.success i.fa-check-circle,.mname.success i.fa-check-circle,.lname.success i.fa-check-circle,.email.success i.fa-check-circle,.pass.success i.fa-check-circle,.phone.success i.fa-check-circle,.dob.success i.fa-check-circle,.gender.success i.fa-check-circle,.interest.success i.fa-check-circle,.city.success i.fa-check-circle,.state.success i.fa-check-circle,.country.success i.fa-check-circle,.zip.success i.fa-check-circle{
+.fname.success i.fa-check-circle,.mname.success i.fa-check-circle,.email.success i.fa-check-circle,.phone.success i.fa-check-circle{
+  color: green;
+  visibility: visible;
+}
+.gender.success i.fa-check-circle,.pass.success i.fa-check-circle,.lname.success i.fa-check-circle{
+  color: green;
+  visibility: visible;
+  margin-left: 21px;
+
+}
+.current_address.success i.fa-check-circle,.permanent_address.success i.fa-check-circle,.city.success i.fa-check-circle,.state.success i.fa-check-circle,.country.success i.fa-check-circle,.zip.success i.fa-check-circle,.city1.success i.fa-check-circle,.state1.success i.fa-check-circle,.country1.success i.fa-check-circle,.zip1.success i.fa-check-circle{
   color: green;
   visibility: visible;
 
 }
-.lname.error i.fa-exclamation-circle,.address.error i.fa-exclamation-circle,.fname.error i.fa-exclamation-circle,.mname.error i.fa-exclamation-circle,.email.error i.fa-exclamation-circle,.pass.error i.fa-exclamation-circle{
+.lname.error i.fa-exclamation-circle,.current_address.error i.fa-exclamation-circle,.permanent_address.error i.fa-exclamation-circle,.fname.error i.fa-exclamation-circle,.mname.error i.fa-exclamation-circle,.email.error i.fa-exclamation-circle,.pass.error i.fa-exclamation-circle{
   color: red;
   visibility: visible;
 }
@@ -93,11 +103,54 @@ body{
   visibility: visible;
   margin-top: 25px;
 }
-.city.error i.fa-exclamation-circle,.state.error i.fa-exclamation-circle,.country.error i.fa-exclamation-circle,.interest.error i.fa-exclamation-circle{
+.dob.success i.fa-check-circle{
+  color: green;
+  visibility: visible;
+  position: absolute;
+    top: 30%;
+    left: 95%; 
+
+}
+.interest.success i.fa-check-circle{
+  color: green;
+  visibility: visible;
+  position: absolute;
+    top: 40%;
+    left: 95%;
+
+}
+.city1.success i.fa-check-circle,.country1.success i.fa-check-circle,.city.success i.fa-check-circle,.country.success i.fa-check-circle,.state.success i.fa-check-circle,.zip.success i.fa-check-circle,.state1.success i.fa-check-circle,.zip1.success i.fa-check-circle{
+  margin-left: 21px;
+}
+
+.dob.error i.fa-exclamation-circle{
+  color: red;
+  visibility: visible;
+  margin-top: 25px;
+  position: absolute;
+    top: 28%;
+    left: 95%; 
+}
+.interest.error i.fa-exclamation-circle{
+  color: red;
+  visibility: visible;
+  margin-top: 25px;
+  position: absolute;
+    top: 37%;
+    left: 95%; 
+}
+.zip.error i.fa-exclamation-circle,.city.error i.fa-exclamation-circle,.state.error i.fa-exclamation-circle,.country.error i.fa-exclamation-circle,.zip1.error i.fa-exclamation-circle,.city1.error i.fa-exclamation-circle,.state1.error i.fa-exclamation-circle,.country1.error i.fa-exclamation-circle{
   color: red;
   visibility: visible;
 }
-.address i{
+.zip1.error i.fa-exclamation-circle{
+  position: absolute;
+  margin-left: 1px;
+}
+.permanent_address i{
+  visibility: hidden;
+}
+.current_address i{
   visibility: hidden;
 }
 .error_mess{
@@ -108,17 +161,17 @@ body{
   display: block;
   color: red;
 }
-.address i.fa-check-circle,.address  i.fa-exclamation-circle{
+.permanent_address i.fa-check-circle,.permanent_address  i.fa-exclamation-circle{
   position: absolute;
   right: 12%;
   margin-top: 10px;
+  right: 4%;
 }
-.state.error >input{
-  margin-left: 12px;
-  width: 110px;
-}
-.state.success >input{
-   margin-left: 28px;
+.current_address i.fa-check-circle,.current_address  i.fa-exclamation-circle{
+  position: absolute;
+  right: 12%;
+  margin-top: 10px;
+  right: 4%;
 }
 
 .div2{
@@ -126,8 +179,11 @@ body{
   flex-direction: column;
   margin-top: 25px;
 }
-.div2-email-pass,.div2-phone-dob,.div2-gender-interest,.div2-per,.div2-curr{
+.div2-email-pass,.div2-phone-dob,.div2-per,.div2-curr{
   margin-bottom: 20px;
+  display: flex;
+}
+.div2-gender-interest{
   display: flex;
 }
 .email,.phone,.gender{
@@ -135,8 +191,30 @@ body{
   margin-left: 25px;
 
 }
+.birthday{
+  display: flex;
+  align-items: center;
+}
+.birthday >h3{
+  margin-left: 112px;
+}
+.dob>input{
+  margin-left: 196px;
+}
 .gender{
-  margin-bottom: 25px;
+  margin-bottom: 20px;
+}
+.gender>select{
+  margin-left: -13px;
+}
+.interest>select{
+  margin-left: 196px;
+}
+.div2-gender-interest{
+  align-items: center;
+}
+.div2-gender-interest>h3{
+  margin-left: 147px;
 }
 .pass,.dob,.interest{
   width: 50%;
@@ -148,7 +226,7 @@ body{
   padding: 8px;
   width: 307px;
 }
-.phone >input,.dob>input,.gender>select,.interest>select{
+.phone >input,.gender>select,.interest>select{
   margin-top: 25px;
 }
 .gender >select,.interest>select{
@@ -160,30 +238,52 @@ body{
 .gender .interest > textarea:focus, select:focus{
   outline: none;
 }
-.city{
-  margin-left: 25px;
+.city,.city1{
+  margin-left: 28px;
   padding-right: 10px;
+  width: 50%;
 }
-.state,.country,.zip{
-  padding-right: 10px;
+.permanent_address{
+  margin-left: 4px;
 }
-.city >input,.state>input,.country>input,.zip>input{
+.current_address{
+  margin-left: 4px;
+}
+.state,.state1{
+  width: 50%;
+}
+.country,.country1{
+  width: 50%;
+  margin-left: 28px;
+}
+.country{
+  margin-bottom: 10px;
+}
+.zip,.zip1{
+  width: 50%;
+  margin-left: 13px;
+}
+.city >input,.state>input,.country>input,.city1 >input,.state1>input,.country1>input{
   border-top: none;
   border-right: none;
   border-left: none;
   padding: 8px;
-  width: 124px;
+  width: 292px;
+}
+.zip>input,.zip1>input{
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  padding: 8px;
+  width: 293px;
 
 }
-
-
 .per-add,.cur-add,.cap{
   padding-left: 20px;
   padding-bottom: 20px;
   font-style: normal;
   font-size: 20px;
   font-weight: 200px;
-  color: #beb7b7;
 }
 .captcha1{
   display: flex;
@@ -249,4 +349,49 @@ color: green;
     color: white;
     font-size: 15px;
     border: none;
+}
+.error-mess-fname,.error-mess-mname,.error-mess-lname,.error-mess-email,.error-mess-pass,.error-mess-phone,.error-mess-dob,.error-mess-interest,.error-mess-gender,.error-mess-address,.error-mess-city,.error-mess-state,.error-mess-country,.error-mess-zip{
+  display: none;
+}
+.fname.error>span,.mname.error>span,.lname.error>span,.email.error>span,.pass.error>span,.phone.error>span,.city.error>span,.country.error>span,.state.error>span,.zip.error>span,.city1.error>span,.state1.error>span,.country1.error>span,.zip1.error>span{
+  display: block;
+  position: absolute;
+  color: red;
+  margin-top: 5px;
+  margin-left: 1px;
+  font-size: 12px;
+}
+.gender.error>span{
+  display: block;
+  position: absolute;
+  color: red;
+  margin-top: 5px;
+  margin-left: -12px;
+  font-size: 12px;
+
+}
+.dob.error >span,.interest.error>span{
+  display: block;
+  position: absolute;
+  color: red;
+  margin-top: -13px;
+  margin-left: 199px;
+  font-size: 12px;
+
+}
+
+.permanent_address.error>span,.current_address.error>span{
+  display: block;
+  position: absolute;
+  color: red;
+  margin-top: -24px;
+  margin-left: 25px;
+  font-size: 12px;
+}
+.cap{
+  margin-top: 10px;
+}
+.fname.error >span,.lname.error>span,.mname.error>span{
+  width: 212px;
+    font-size: 12px;
 }
