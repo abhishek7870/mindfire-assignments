@@ -37,10 +37,10 @@
 
 body{
   background-image: url('/images/bannar4.jpg');
-  height: 1270px;
+  height: 1200px;
 }
 .form-header{
-  height: 1115px;
+  height: 1018px;
   width: 800px;
   background-color: #ffffff;
   position: absolute;
@@ -107,15 +107,16 @@ body{
   color: green;
   visibility: visible;
   position: absolute;
-    top: 30%;
-    left: 95%; 
+    top: 36%;
+    left: 45%; 
 
 }
+
 .interest.success i.fa-check-circle{
   color: green;
   visibility: visible;
   position: absolute;
-    top: 40%;
+    top: 36%;
     left: 95%;
 
 }
@@ -128,15 +129,15 @@ body{
   visibility: visible;
   margin-top: 25px;
   position: absolute;
-    top: 28%;
-    left: 95%; 
+    top: 33%;
+    left: 46%; 
 }
 .interest.error i.fa-exclamation-circle{
   color: red;
   visibility: visible;
   margin-top: 25px;
   position: absolute;
-    top: 37%;
+    top: 33%;
     left: 95%; 
 }
 .zip.error i.fa-exclamation-circle,.city.error i.fa-exclamation-circle,.state.error i.fa-exclamation-circle,.country.error i.fa-exclamation-circle,.zip1.error i.fa-exclamation-circle,.city1.error i.fa-exclamation-circle,.state1.error i.fa-exclamation-circle,.country1.error i.fa-exclamation-circle{
@@ -180,6 +181,7 @@ body{
 }
 .div2-gender-interest{
   display: flex;
+  flex-direction: column;
 }
 .email,.phone,.gender{
   width: 50%;
@@ -188,13 +190,15 @@ body{
 }
 .birthday{
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
-.birthday >h3{
-  margin-left: 112px;
+.birthday >p{
+  margin-left: 34px;
+  font-size: 15px;
 }
 .dob>input{
-  margin-left: 196px;
+  margin-left: 25px;
+  margin-top: 17px;
 }
 .gender{
   margin-bottom: 20px;
@@ -203,13 +207,11 @@ body{
   margin-left: -13px;
 }
 .interest>select{
-  margin-left: 196px;
+  margin-left: 23px;
+  height: 55px;
 }
-.div2-gender-interest{
-  align-items: center;
-}
-.div2-gender-interest>h3{
-  margin-left: 147px;
+.div2-gender-interest>p{
+  margin-left: 35px;
 }
 .pass,.dob,.interest{
   width: 50%;
@@ -221,9 +223,9 @@ body{
   padding: 8px;
   width: 307px;
 }
-.phone >input,.gender>select,.interest>select{
+.phone >input,.gender>select{
   margin-top: 25px;
-}
+} 
 .gender >select,.interest>select{
   width: 323px;
 }
@@ -367,7 +369,7 @@ color: green;
   position: absolute;
   color: red;
   margin-top: -13px;
-  margin-left: 199px;
+  margin-left: 26px;
   font-size: 12px;
 
 }
@@ -386,4 +388,19 @@ color: green;
 .fname.error >span,.lname.error>span,.mname.error>span{
   width: 212px;
     font-size: 12px;
+}
+.dob-interest{
+  display: flex;
+}
+.interest.error >select{
+  margin-left: 25px;
+}
+.interest.success>select{
+  margin-left: 25px;
+}
+.dob.success>input{
+  margin-right: 19px;
+}
+.dob.error>input{
+  margin-right: 19px;
 }

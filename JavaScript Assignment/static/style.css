@@ -37,10 +37,10 @@
 
 body{
   background-image: url('/images/bannar4.jpg');
-  height: 1270px;
+  height: 1250px;
 }
 .form-header{
-  height: 1115px;
+  height: 1030px;
   width: 800px;
   background-color: #ffffff;
   position: absolute;
@@ -107,15 +107,15 @@ body{
   color: green;
   visibility: visible;
   position: absolute;
-    top: 30%;
-    left: 95%; 
+  margin-top: -26px;
+    left: 46%; 
 
 }
 .interest.success i.fa-check-circle{
   color: green;
   visibility: visible;
   position: absolute;
-    top: 40%;
+  margin-top: -26px;
     left: 95%;
 
 }
@@ -128,15 +128,15 @@ body{
   visibility: visible;
   margin-top: 25px;
   position: absolute;
-    top: 28%;
-    left: 95%; 
+    top: 33%;
+    left: 46%; 
 }
 .interest.error i.fa-exclamation-circle{
   color: red;
   visibility: visible;
   margin-top: 25px;
   position: absolute;
-    top: 37%;
+    top: 33%;
     left: 95%; 
 }
 .zip.error i.fa-exclamation-circle,.city.error i.fa-exclamation-circle,.state.error i.fa-exclamation-circle,.country.error i.fa-exclamation-circle,.zip1.error i.fa-exclamation-circle,.city1.error i.fa-exclamation-circle,.state1.error i.fa-exclamation-circle,.country1.error i.fa-exclamation-circle{
@@ -146,6 +146,7 @@ body{
 .zip1.error i.fa-exclamation-circle{
   position: absolute;
   margin-left: 1px;
+  margin-top: 10px;
 }
 .permanent_address i{
   visibility: hidden;
@@ -185,6 +186,7 @@ body{
 }
 .div2-gender-interest{
   display: flex;
+  flex-direction: column;
 }
 .email,.phone,.gender{
   width: 50%;
@@ -193,13 +195,15 @@ body{
 }
 .birthday{
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
-.birthday >h3{
-  margin-left: 112px;
+.birthday >p{
+  margin-left: 34px;
+  font-size: 15px;
 }
 .dob>input{
-  margin-left: 196px;
+  margin-left: 26px;
+  margin-top: 16px;
 }
 .gender{
   margin-bottom: 20px;
@@ -208,13 +212,20 @@ body{
   margin-left: -13px;
 }
 .interest>select{
-  margin-left: 196px;
+  margin-left: 20px;
+  height: 55px;
 }
-.div2-gender-interest{
-  align-items: center;
+.interest.error>select,.interest.success>select{
+  margin-left: 40px;
 }
-.div2-gender-interest>h3{
-  margin-left: 147px;
+.div2-gender-interest.error>p{
+margin-left: 55px;
+}
+.div2-gender-interest.success>p{
+  margin-left: 55px;
+}
+.div2-gender-interest>p{
+  margin-left: 37px;
 }
 .pass,.dob,.interest{
   width: 50%;
@@ -226,9 +237,9 @@ body{
   padding: 8px;
   width: 307px;
 }
-.phone >input,.gender>select,.interest>select{
+/* .phone >input,.gender>select,.interest>select{
   margin-top: 25px;
-}
+} */
 .gender >select,.interest>select{
   width: 323px;
 }
@@ -370,13 +381,23 @@ color: green;
   font-size: 12px;
 
 }
-.dob.error >span,.interest.error>span{
+.interest.error>span{
   display: block;
   position: absolute;
   color: red;
   margin-top: -13px;
-  margin-left: 199px;
+  margin-left: 44px;
   font-size: 12px;
+
+}
+.dob.error >span{
+  display: block;
+  position: absolute;
+  color: red;
+  margin-top: -13px;
+  margin-left: 28px;
+  font-size: 12px;
+
 
 }
 
@@ -394,4 +415,7 @@ color: green;
 .fname.error >span,.lname.error>span,.mname.error>span{
   width: 212px;
     font-size: 12px;
+}
+.dob-hobbies{
+  display: flex;
 }

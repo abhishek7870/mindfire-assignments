@@ -70,6 +70,7 @@ $(document).on("click", "#add-address", function () {
   $(alternative_address).find('.pincode').removeClass('error');
   $(alternative_address).find('.select_city').val('');
   $(alternative_address).find('.select_pincode').val('');
+  $(alternative_address).find('.add-link').remove();
   var new_picode = $(alternative_address).find(".pincode");
   var delete_btn = '<button class="delete">Delete</button>';
   $(delete_btn).insertAfter(new_picode);

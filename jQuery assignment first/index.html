@@ -72,26 +72,25 @@
                           </option>
                         <option value="Male">Male</option>
                         <option value="Female">Female</option>
-                        <option value="Female">Other</option>
+                        <option value="Other">Other</option>
                     </select>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-gender">Please select your gender.</span>
                 </div>
             </div>
+            <div class="dob-interest">
             <div class="birthday">
-                <h3>Date of Birth</h3>
+                <p>Date of Birth</p>
                 <div class="dob">
                     <input placeholder="DOB" type="date" id="date" max="2021-11-30" onblur="checkDate(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-dob">Please provide your DOB.</span>
                 </div>
-
             </div>
-
             <div class="div2-gender-interest">
-                <h3>Hobbies</h3>
+                <p>Hobbies</p>
                 <div class="interest">
                     <select name="Interests" placeholder="Interests" id="interest" multiple onblur="checkInterest(this)">
                         <option value="cricket">Sports</option>
@@ -105,6 +104,7 @@
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-interest">Please select your interests.</span>
                 </div>
+            </div>
             </div>
             <p class="per-add">Permanent Address</p>
             <div class="permanent_address">

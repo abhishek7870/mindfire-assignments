@@ -171,9 +171,8 @@ color: #495057;
     padding: 10px;
     border-radius: 5px;
     border: none;
-    position: absolute;
-    top: 120%;
-    right: 12%;
+    margin-left: 650px;
+    margin-top: 15px;
 }
 
 .right-down{
