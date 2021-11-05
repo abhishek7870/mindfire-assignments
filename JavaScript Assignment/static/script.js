@@ -432,12 +432,16 @@ function setSuccessForGender(input) {
 }
 
 function setErrorForInterest(input) {
+  const parentInterest=document.getElementsByClassName('div2-gender-interest');
   const interest = input.parentElement;
   interest.className = "interest error";
+  parentInterest[0].className="div2-gender-interest error";
 }
 function setSuccessForInterest(input) {
+  const parentInterest=document.getElementsByClassName('div2-gender-interest');
   const interest = input.parentElement;
   interest.className = "interest success";
+  parentInterest[0].className="div2-gender-interest success";
 }
 
 function setErrorForDob(input) {

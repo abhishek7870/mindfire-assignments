@@ -122,22 +122,31 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 230px;
+  margin-left: 47px;
   width: 300px;
-}
-.div3 >h3,.div4>h3{
-  margin-left: 135px;
+  margin-top: 15px;
 }
 .div3{
   margin-top: 30px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
+}
+.div3>p{
+  margin-left: 54px;
+  font-size: 15px;
+
+}
+.div4>p{
+  margin-left: 90px;
+  font-size: 15px;
+
+
 }
 .div4{
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
-  align-items: center;
+  flex-direction: column;
 }
 .div5{
   margin-top: 25px;
@@ -156,8 +165,9 @@ body{
   border-left: none;
   border-right: none;
   padding: 8px;
-  margin-left: 254px;
-  width: 310px;
+  margin-left: 73px;
+  width: 317px;
+  height: 55px;
 }
 .per-add,.cur-add{
   padding-left: 20px;
@@ -191,4 +201,7 @@ body{
   cursor: pointer;
   font-size: 20px;
 
+}
+.dob-hobbies{
+  display: flex;
 }

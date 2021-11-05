@@ -35,14 +35,16 @@ $(document).on('click','.btn',function(e){
   var country2=checkCountry2($("#country1"));
   var zip2=checkZipcode2($("#zip1"));
 
-  var is_valid_captcha = submit();
+var is_valid_captcha = submit();
  if(fname && mname && lname && email && password && number && gender && 
-  interest && dob && permanent_add && city1 && state1 && country1 && zip1 && current_add && city2 && state2 && country2 && zip2 && is_valid_captcha){
+  interest && dob && permanent_add && city1 && state1 && country1 && zip1 && 
+  current_add && city2 && state2 && country2 && zip2 && is_valid_captcha){
     // alert("Successfully Registered. Click OK to Proceed");
   }
 
 
 })
+
 
 function checkParmanentAddress(element){
   var per_address = $(element).val();
@@ -199,7 +201,6 @@ function checkGender(element){
 
 function checkInterest(element){
     var interest = $(element).val();
-    console.log(interest.length);
     if (interest.length !== 0) {
       $(".interest").removeClass("error");
       $(".interest").addClass("interest success");
@@ -209,7 +210,6 @@ function checkInterest(element){
       $(".interest").addClass("interest error");
       return false;
     }
-
 }
 
 
