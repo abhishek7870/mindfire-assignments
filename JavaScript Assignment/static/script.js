@@ -1,3 +1,7 @@
+const equation = ["-", "+", "*", "/"];
+let expectOutput = "";
+let captchaEquation = "";
+
 const form = document.getElementById("form");
 const fname = document.getElementById("fname");
 const mname = document.getElementById("mname");
@@ -8,17 +12,19 @@ const phone = document.getElementById("phone");
 const dob = document.getElementById("date");
 const gender = document.getElementById("gender");
 const interest = document.getElementById("interest");
-const perAddress = document.getElementById("per-address");
-const city = document.getElementById("city");
-const state = document.getElementById("state");
-const country = document.getElementById("country");
-const zip = document.getElementById("zip");
 
-const currAddress = document.getElementById("curr-address");
-const city1 = document.getElementById("city1");
-const state1 = document.getElementById("state1");
-const country1 = document.getElementById("country1");
-const zip1 = document.getElementById("zip1");
+const permanent_address = document.getElementById("per-address");
+const parmanent_city = document.getElementById("city");
+const permanent_state = document.getElementById("state");
+const permanent_country = document.getElementById("country");
+const permanent_pincode = document.getElementById("zip");
+
+const current_address = document.getElementById("curr-address");
+const current_city = document.getElementById("city1");
+const current_state = document.getElementById("state1");
+const current_country = document.getElementById("country1");
+const current_pincode = document.getElementById("zip1");
+
 
 document.querySelector(".btn").addEventListener("click", (e) => {
   e.preventDefault();
@@ -34,46 +40,52 @@ document.querySelector(".btn").addEventListener("click", (e) => {
     // alert("Successfully Registered. Click OK to Proceed");
   }
 });
+
+
+
 function checkInputs() {
-  var fname = checkFname();
-  var mname = checkMname();
-  var lname = checkLname();
-  var email = CheckEmail();
-  var password = checkPassword();
-  var PhoneNumber = checkPhoneNumber();
-  var dob = checkDob();
-  var gender = checkGender();
-  var interest = checkInterest();
-  var permanentAddress = checkPermanentAddress();
-  var city1 = checkCity();
-  var state1 = checkState();
-  var country1 = checkCountry();
-  var pincode1 = checkZipCode();
-  var currentAddress = checkCurrentAddress();
-  var city2 = checkCity1();
-  var state2 = checkState1();
-  var country2 = checkCountry1();
-  var pincode2 = checkZipCode1();
+  var check_fname = checkName(fname);
+  var check_mname = checkMname();
+  var check_lname = checkName(lname);
+  var check_email = CheckEmail();
+  var check_password = checkPassword();
+  var check_PhoneNumber = checkPhoneNumber();
+  var check_dob = checkDob();
+  var check_gender = checkGender();
+  var check_interest = checkInterest();
+
+  var check_permanent_address = checkAddress(permanent_address);
+  var check_permanent_city = checkCity(parmanent_city);
+  var check_permanent_state = checkState(permanent_state);
+  var check_permanent_country = checkCountry(permanent_country);
+  var check_permanent_pincode = checkZipCode(permanent_pincode);
+
+  var check_current_address = checkAddress(current_address);
+  var check_current_city = checkCity(current_city);
+  var check_current_state = checkState(current_state);
+  var check_current_country = checkCountry(current_country);
+  var check_current_pincode = checkZipCode(current_pincode);
+
   if (
-    fname &&
-    mname &&
-    lname &&
-    email &&
-    password &&
-    PhoneNumber &&
-    dob &&
-    gender &&
-    interest &&
-    permanentAddress &&
-    city1 &&
-    state1 &&
-    country1 &&
-    pincode1 &&
-    currAddress &&
-    city2 &&
-    state2 &&
-    country2 &&
-    pincode2
+    check_fname &&
+    check_mname &&
+    check_lname &&
+    check_email &&
+    check_password &&
+    check_PhoneNumber &&
+    check_dob &&
+    check_gender &&
+    check_interest &&
+    check_permanent_address &&
+    check_permanent_city &&
+    check_permanent_state &&
+    check_permanent_country &&
+    check_permanent_pincode &&
+    check_current_address &&
+    check_current_city &&
+    check_current_state &&
+    check_current_country &&
+    check_current_pincode
   ) {
     return true;
   } else {
@@ -81,435 +93,200 @@ function checkInputs() {
   }
 }
 
-function checkFname() {
-  const fnameValue = fname.value.trim();
+
+function checkName(name) {
+  const name_value = name.value.trim();
   var pattern = /^[A-Za-z']+$/;
-  if (pattern.test(fnameValue) && fnameValue.length > 1) {
-    console.log("dsfds");
-    setSuccessForFname(fname);
+  if (pattern.test(name_value) && name_value.length > 1) {
+    setSuccessMsg(name.parentElement);
     return true;
   } else {
-    setErrorForFname(fname);
+    setErrorMsg(name.parentElement);
     return false;
   }
 }
+
 
 function checkMname() {
   const mnameValue = mname.value.trim();
   var pattern = /^[A-Za-z']+$/;
   if (mnameValue.length === 0) {
-    setBackToNormal(mname);
+    mname.parentElement.className="mname";
     return true;
   } else if (pattern.test(mnameValue) && mnameValue.length > 1) {
-    setSuccessForMname(mname);
+    setSuccessMsg(mname.parentElement);
     return true;
   } else {
-    setErrorForMname(mname);
+    setErrorMsg(mname.parentElement);
     return false;
   }
 }
 
-function checkLname() {
-  const lnameValue = lname.value.trim();
-  var pattern = /^[A-Za-z']+$/;
-  if (pattern.test(lnameValue) && lnameValue.length > 1) {
-    setSuccessForLname(lname);
-    return true;
-  } else {
-    setErrorForLname(lname);
-    return false;
-  }
-}
 
 function CheckEmail() {
   const emailValue = email.value.trim();
-  console.log(emailValue);
   var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   if (pattern.test(emailValue) && emailValue.length != 0) {
-    setSuccessForEmail(email);
+    setSuccessMsg(email.parentElement);
     return true;
   } else {
-    setErrorForEmail(email);
+    setErrorMsg(email.parentElement);
     return false;
   }
 }
+
 
 function checkPassword() {
   const passValue = pass.value.trim();
   if (passValue === "" || passValue.length < 4 || passValue.length > 12) {
-    setErrorForPassword(pass);
+    setErrorMsg(pass.parentElement);
     return false;
   } else {
-    setSuccessForPassword(pass);
+    setSuccessMsg(pass.parentElement);
     return true;
   }
 }
+
 
 function checkPhoneNumber() {
   const phoneValue = phone.value.trim();
   var pattern = /^[^0-1][0-9]{9}$/;
   if (pattern.test(phoneValue)) {
-    setSuccessForPhone(phone);
+    setSuccessMsg(phone.parentElement);
     return true;
   } else {
-    setErrorForPhone(phone);
+    setErrorMsg(phone.parentElement);
     return false;
   }
 }
 
+
 function checkDob() {
   const dobValue = dob.value.trim();
-  console.log(dobValue);
   var pattern = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-  console.log(pattern.test(dobValue));
   if (dobValue === null || !pattern.test(dobValue)) {
-    setErrorForDob(dob);
+     setErrorMsg(dob.parentElement);
     return false;
   } else {
-    setSuccessForDob(dob);
+    setSuccessMsg(dob.parentElement);
     return true;
   }
 }
+
 
 function checkGender() {
   const genderValue = gender.value.trim();
   if (genderValue === "") {
-    setErrorForGender(gender);
+    setErrorMsg(gender.parentElement);
     return false;
   } else {
-    setSuccessForGender(gender);
-    return true;
-  }
-}
-function checkInterest() {
-  const interestValue = interest.value.trim();
-  if (interestValue === "") {
-    setErrorForInterest(interest);
-    return false;
-  } else {
-    setSuccessForInterest(interest);
+    setSuccessMsg(gender.parentElement);
     return true;
   }
 }
 
-function checkPermanentAddress() {
+
+function checkInterest() {
+  const parentInterest=document.getElementsByClassName('div2-gender-interest');
+  parentInterest[0].className="div2-gender-interest error";
+  const interestValue = interest.value.trim();
+  if (interestValue === "") {
+    setErrorMsg(interest.parentElement);
+    return false;
+  } else {
+    setSuccessMsg(interest.parentElement);
+    return true;
+  }
+}
+
+
+function checkAddress(perAddress) {
   const perAddressValue = perAddress.value.trim();
   const pattern = /[0-9 -/]{1,7}\s+[\w\s]+/;
   if (!pattern.test(perAddressValue)) {
-    setErrorForPermentAddress(perAddress);
+    setErrorMsg(perAddress.parentElement);
     return false;
   } else {
-    setSuccessForPermentAddress(perAddress);
+    setSuccessMsg(perAddress.parentElement);
     return true;
   }
 }
 
-function checkCity() {
+
+function checkCity(city) {
   const cityValue = city.value.trim();
   var pattern = /^[A-Za-z']+$/;
   if (cityValue === "" || cityValue.length < 3) {
-    setErrorForCity(city);
+    setErrorMsg(city.parentElement);
     return false;
   } else if (pattern.test(cityValue)) {
-    setSuccessForCity(city);
+    setSuccessMsg(city.parentElement);
     return true;
   } else {
-    setErrorForCity(city);
+    setErrorMsg(city.parentElement);
     return false;
   }
 }
 
-function checkState() {
+
+function checkState(state) {
   const StateValue = state.value.trim();
   var pattern = /^[A-Za-z']+$/;
   if (StateValue === "" || StateValue.length < 3) {
-    setErrorForState(state);
+    setErrorMsg(state.parentElement);
     return false;
   } else if (pattern.test(StateValue)) {
-    setSuccessForState(state);
+    setSuccessMsg(state.parentElement);
     return true;
   } else {
-    setErrorForState(state);
+    setErrorMsg(state.parentElement);
     return false;
   }
 }
 
-function checkCountry() {
+
+function checkCountry(country) {
   var pattern = /^[A-Za-z']+$/;
   const countryValue = country.value.trim();
-
   if (countryValue === "" || countryValue.length < 3) {
-    setErrorForCountry(country);
+    setErrorMsg(country.parentElement);
     return false;
   } else if (pattern.test(countryValue)) {
-    setSuccessForCountry(country);
+    setSuccessMsg(country.parentElement);
     return true;
   } else {
-    setErrorForCountry(country);
+    setErrorMsg(country.parentElement);
     return false;
   }
 }
 
-function checkZipCode() {
+
+function checkZipCode(zip) {
   const zipValue = zip.value.trim();
   var pattern = /^([0-9]){6}?$/;
   if (pattern.test(zipValue) && zipValue.length == 6) {
-    setSuccessForPincode(zip);
+    setSuccessMsg(zip.parentElement);
     return true;
   } else {
-    setErrorForPincode(zip);
+    setErrorMsg(zip.parentElement);
     return false;
   }
 }
 
-function checkCurrentAddress() {
-  const currAddressValue = currAddress.value.trim();
-  const pattern = /[0-9 -/]{1,7}\s+[\w\s]+/;
-  if (!pattern.test(currAddressValue)) {
-    setErrorForCurrentAddress(currAddress);
-    return false;
-  } else {
-    setSuccessForCurrentAddress(currAddress);
-    return true;
-  }
+
+function setErrorMsg(element) {
+  class_names = element.className.replace("success", "");
+  class_names = class_names.replace("error", "");
+  element.className = class_names + " " + "error";
 }
 
-function checkCity1() {
-  const cityValue1 = city1.value.trim();
-  var pattern = /^[A-Za-z']+$/;
-  if (cityValue1 === "" || cityValue1.length < 3) {
-    setErrorForCity(city1);
-    return false;
-  } else if (pattern.test(cityValue1)) {
-    setSuccessForCity(city1);
-    return true;
-  } else {
-    setErrorForCity(city1);
-    return false;
-  }
+
+function setSuccessMsg(element) {
+  class_names = element.className.replace("error", "");
+  class_names =class_names.replace("success", "");
+  element.className = class_names + " " + "success";
 }
 
-function checkState1() {
-  const StateValue1 = state1.value.trim();
-  var pattern = /^[A-Za-z']+$/;
-  if (StateValue1 === "" || StateValue1.length < 3) {
-    setErrorForState1(state1);
-    return false;
-  } else if (pattern.test(StateValue1)) {
-    setSuccessForState1(state1);
-    return true;
-  } else {
-    setErrorForState(state1);
-    return false;
-  }
-}
-
-function checkCountry1() {
-  var pattern = /^[A-Za-z']+$/;
-  const countryValue1 = country1.value.trim();
-
-  if (countryValue1 === "" || countryValue1.length < 3) {
-    setErrorForCountry1(country1);
-    return false;
-  } else if (pattern.test(countryValue1)) {
-    setSuccessForCountry1(country1);
-    return true;
-  } else {
-    setErrorForCountry1(country1);
-    return false;
-  }
-}
-
-function checkZipCode1() {
-  const zipValue1 = zip1.value.trim();
-  var pattern = /^([0-9]){6}?$/;
-  if (pattern.test(zipValue1) && zipValue1.length == 6) {
-    setSuccessForPincode1(zip1);
-    return true;
-  } else {
-    setErrorForPincode1(zip1);
-    return false;
-  }
-}
-
-function setErrorForPermentAddress(input) {
-  const permanent_address = input.parentElement;
-  permanent_address.className = "permanent_address error";
-}
-function setSuccessForPermentAddress(input) {
-  const permanent_address = input.parentElement;
-  permanent_address.className = "permanent_address success";
-}
-
-function setErrorForCurrentAddress(input) {
-  const current_address = input.parentElement;
-  current_address.className = "current_address error";
-}
-function setSuccessForCurrentAddress(input) {
-  const current_address = input.parentElement;
-  current_address.className = "current_address success";
-}
-
-function setErrorForCity1(input) {
-  const city1 = input.parentElement;
-  city1.className = "city1 error";
-}
-function setSuccessForCity1(input) {
-  const city1 = input.parentElement;
-  city1.className = "city1 success";
-}
-
-function setErrorForState1(input) {
-  const state1 = input.parentElement;
-  state1.className = "state1 error";
-}
-function setSuccessForState1(input) {
-  const state1 = input.parentElement;
-  state1.className = "state1 success";
-}
-
-function setErrorForCountry1(input) {
-  const country1 = input.parentElement;
-  country1.className = "country1 error";
-}
-function setSuccessForCountry1(input) {
-  const country1 = input.parentElement;
-  country1.className = "country1 success";
-}
-
-function setErrorForPincode1(input) {
-  const zip1 = input.parentElement;
-  zip1.className = "zip1 error";
-}
-function setSuccessForPincode1(input) {
-  const zip1 = input.parentElement;
-  zip1.className = "zip1 success";
-}
-
-function setErrorForCity(input) {
-  const city = input.parentElement;
-  city.className = "city error";
-}
-function setSuccessForCity(input) {
-  const city = input.parentElement;
-  city.className = "city success";
-}
-
-function setErrorForState(input) {
-  const state = input.parentElement;
-  state.className = "state error";
-}
-function setSuccessForState(input) {
-  const state = input.parentElement;
-  state.className = "state success";
-}
-
-function setErrorForCountry(input) {
-  const country = input.parentElement;
-  country.className = "country error";
-}
-function setSuccessForCountry(input) {
-  const country = input.parentElement;
-  country.className = "country success";
-}
-
-function setErrorForPincode(input) {
-  const zip = input.parentElement;
-  zip.className = "zip error";
-}
-function setSuccessForPincode(input) {
-  const zip = input.parentElement;
-  zip.className = "zip success";
-}
-
-function setErrorForGender(input) {
-  const gender = input.parentElement;
-  gender.className = "gender error";
-}
-function setSuccessForGender(input) {
-  const gender = input.parentElement;
-  gender.className = "gender success";
-}
-
-function setErrorForInterest(input) {
-  const parentInterest=document.getElementsByClassName('div2-gender-interest');
-  const interest = input.parentElement;
-  interest.className = "interest error";
-  parentInterest[0].className="div2-gender-interest error";
-}
-function setSuccessForInterest(input) {
-  const parentInterest=document.getElementsByClassName('div2-gender-interest');
-  const interest = input.parentElement;
-  interest.className = "interest success";
-  parentInterest[0].className="div2-gender-interest success";
-}
-
-function setErrorForDob(input) {
-  const dob = input.parentElement;
-  dob.className = "dob error";
-}
-function setSuccessForDob(input) {
-  const dob = input.parentElement;
-  dob.className = "dob success";
-}
-
-function setErrorForPhone(input) {
-  const phone = input.parentElement;
-  phone.className = "phone error";
-}
-function setSuccessForPhone(input) {
-  const phone = input.parentElement;
-  phone.className = "phone success";
-}
-
-function setErrorForEmail(input) {
-  const email = input.parentElement;
-  email.className = "email error";
-}
-function setSuccessForEmail(input) {
-  const email = input.parentElement;
-  email.className = "email success";
-}
-
-function setErrorForPassword(input) {
-  const pass = input.parentElement;
-  pass.className = "pass error";
-}
-function setSuccessForPassword(input) {
-  const pass = input.parentElement;
-  pass.className = "pass success";
-}
-
-function setErrorForFname(input) {
-  const fname = input.parentElement;
-  fname.className = "fname error";
-}
-function setSuccessForFname(input) {
-  const fname = input.parentElement;
-  fname.className = "fname success";
-}
-
-function setErrorForMname(input) {
-  const mname = input.parentElement;
-  mname.className = "mname error";
-}
-function setSuccessForMname(input) {
-  const mname = input.parentElement;
-  mname.className = "mname success";
-}
-function setBackToNormal(input) {
-  const mname = input.parentElement;
-  mname.className = "mname";
-}
-
-function setErrorForLname(input) {
-  const lname = input.parentElement;
-  lname.className = "lname error";
-}
-function setSuccessForLname(input) {
-  const lname = input.parentElement;
-  lname.className = "lname success";
-}
 
 document.querySelector(".refresh").addEventListener("click", function (e) {
   e.preventDefault();
@@ -521,9 +298,6 @@ document.querySelector(".refresh").addEventListener("click", function (e) {
   element1.className = "valid_captcha";
 });
 
-const equation = ["-", "+", "*", "/"];
-let expectOutput = "";
-let captchaEquation = "";
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -579,32 +353,37 @@ function submit() {
   } else {
     let resInt = parseInt(res);
     if (resInt === expectOutput) {
-        console.log("-=-=-=-=-=-=")
       setSuccessForCaptcha(captcha_input);
       return true;
     } else {
-      setErrorForCaptcha2(captcha_input);
+      setErrorForCaptcha(captcha_input);
       return false;
     }
   }
 }
 
+
+
 function setErrorForCaptcha(input) {
   const captcha1 = input.parentElement;
   captcha1.className = "captcha1";
-  document.getElementById("valid_captcha").innerHTML = "Please enter captcha";
+  var valid_captcha = document.getElementById("valid_captcha");
+  console.log(input.value);
+  if(input.value.trim().length===0){
+     valid_captcha.innerHTML = "Please enter captcha";
+  }
+  else{
+    valid_captcha.innerHTML = "Invalid captcha"
+  }
 }
-function setErrorForCaptcha2(input) {
-  const captcha1 = input.parentElement;
-  captcha1.className = "captcha1";
-  document.getElementById("valid_captcha").innerHTML = "Invalid captcha";
-}
+
 function setSuccessForCaptcha(input) {
   const captcha1 = input.parentElement;
   captcha1.className = "captcha1 success";
   const valid_captcha = document.getElementById("valid_captcha");
   valid_captcha.className = "valid_captcha";
 }
+
 
 function isEmail(email) {
   return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
