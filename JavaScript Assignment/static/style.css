@@ -418,4 +418,5 @@ color: green;
 }
 .dob-hobbies{
   display: flex;
+  margin-bottom: 15px;
 }
