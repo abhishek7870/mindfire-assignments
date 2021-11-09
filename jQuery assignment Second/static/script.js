@@ -1,11 +1,17 @@
-var country_map = new Map();
-var state_map = new Map();
+
 var captcha_validation=false;
 var address_seperated = [];
 
 const equation = ['-', '+', '*', '/'];
 let expectOutput = '';
 let captchaEquation = '';
+
+const name_pattern = /^(?:((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-.\s])){1,}(['’,\-\.]){0,1}){2,}(([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-. ]))*(([ ]+){0,1}(((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){1,})(['’\-,\.]){0,1}){2,}((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){2,})?)*)$/;
+const email_pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+const number_pattern = /^[^0-1][0-9]{9}$/;
+const pan_pattern = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/; 
+const city_pattern = /^[a-zA-Z]*$/;
+const pincode_pattern = /^([0-9]){6}?$/;
 
 $(document).ready(function () {
     $('.refresh').click(function(e){
@@ -14,7 +20,6 @@ $(document).ready(function () {
       $('.captcha-error-mess').hide();
       $('.captcha1').removeClass('success');
     })
-  loadCountryStateMap();
   loadCountries($("#current_country"));
   $(".emp-details-main").hide();
 
@@ -38,8 +43,6 @@ $("#add-phone").click(function (e) {
   $(clonned_mob_div).insertAfter("#primary-mob");
 });
 
-
-
 $(document).on('change','#file',function(){
     var input_var = $('#file')[0];
     // console.log(input_var);
@@ -55,8 +58,6 @@ $(document).on('change','#file',function(){
     }
 })
 
-
-
 $(document).on("click", "#add-address", function () {
   var alternative_address = $("#primary-address").clone();
   $(alternative_address).removeAttr("id");
@@ -71,19 +72,19 @@ $(document).on("click", "#add-address", function () {
   $(alternative_address).find('.select_city').val('');
   $(alternative_address).find('.select_pincode').val('');
   $(alternative_address).find('.add-link').remove();
+  $(alternative_address).find('.error-mess-country').text('');
+  $(alternative_address).find('.error-mess-state').text('');
+  $(alternative_address).find('.error-mess-city').text('');
+  $(alternative_address).find('.error-mess-pincode').text('');
   var new_picode = $(alternative_address).find(".pincode");
   var delete_btn = '<button class="delete">Delete</button>';
   $(delete_btn).insertAfter(new_picode);
-  console.log($(new_picode));
-
   $(alternative_address).insertAfter("#primary-address");
 });
 
 $(document).on("click", ".remove-phone", function () {
   $(this).parent(".mob").remove();
 });
-
-
 
 function loadStates(country_field) {
   var parent_div = $(country_field).parents('.address');
@@ -102,7 +103,6 @@ function loadStates(country_field) {
   });
 }
 
-
 function loadCountries(country_field) {
   var country_options = "";
   $.getJSON("static/countries.json", function (result) {
@@ -115,20 +115,6 @@ function loadCountries(country_field) {
         "</option>";
     });
     $(country_field).append(country_options);
-  });
-}
-
-
-function loadCountryStateMap() {
-  $.getJSON("static/countries.json", function (countries) {
-    for (let i = 0; i < countries.length; i++) {
-      country_map.set("" + countries[i].id, countries[i].name);
-    }
-  });
-  $.getJSON("static/states.json", function (states) {
-    for (let i = 0; i < states.length; i++) {
-      state_map.set(states[i].id, states[i].name);
-    }
   });
 }
 
@@ -191,7 +177,6 @@ $(document).on("click", "#submit", function () {
         let pincode=  $(address[i]).find('.select_pincode').val();
         display_address+=country+ ',' +state+ ', '+ city + ', ' + pincode + '<br>';
      }
-     console.log(display_address);
      address_seperated = display_address.split('.');
 
 
@@ -215,6 +200,10 @@ $(document).on("click", "#submit", function () {
 
 $(document).on('blur', '.country', function(){
   checkCountry(this);
+  if(this.className==="country error"){
+  checkState($(this).next('.state'));
+  }
+  
 });
 $(document).on('blur', '.state', function(){
   checkState(this);
@@ -228,10 +217,8 @@ $(document).on('blur', '.pincode', function(){
 
 
 function checkName(ele) {
-  var pattern =
-    /^(?:((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-.\s])){1,}(['’,\-\.]){0,1}){2,}(([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-. ]))*(([ ]+){0,1}(((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){1,})(['’\-,\.]){0,1}){2,}((([^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]'’,\-\.\s])){2,})?)*)$/;
   var name = $(ele).val();
-  if (pattern.test(name) && name !== "") {
+  if (name_pattern.test(name) && name !== "") {
     $(".error-mess-name").hide();
     $(".fname").removeClass("error");
     $(".fname").addClass("fname success");
@@ -246,9 +233,8 @@ function checkName(ele) {
 }
 
 function checkEmail(ele) {
-  var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
   var email = $(ele).val();
-  if (pattern.test(email) && email !== "") {
+  if (email_pattern.test(email) && email !== "") {
     $(".error-mess-email").hide();
     $(".email").removeClass("error");
     $(".email").addClass("email success");
@@ -265,7 +251,6 @@ function checkEmail(ele) {
 
 function checkMobileNumbers()
 {
-
   let mobile_type=true;
   var number_fields = $('.mob');
   console.log(number_fields);
@@ -287,14 +272,13 @@ function checkMobileNumbers()
   }
 }
 
-
 function checkAddress(){
   var address_vields = $(".address");
   for(var i=0;i<address_vields.length;i++){
       if(
-      checkCountry($(address_vields[i]).find('.country')) && 
-      checkState($(address_vields[i]).find('.state')) && 
-      checkCity($(address_vields[i]).find('.city')) && 
+      checkCountry($(address_vields[i]).find('.country')) ||
+      checkState($(address_vields[i]).find('.state')) || 
+      checkCity($(address_vields[i]).find('.city')) ||
       checkPincode($(address_vields[i]).find('.pincode'))
       ){
         console.log("passed" + address_vields[i])
@@ -309,9 +293,8 @@ function checkAddress(){
 
 function checkMobile(ele) {
   var mobile = $(ele).find('input').val();
-  var pattern = /^[^0-1][0-9]{9}$/;
   console.log("ssss");
-  if (pattern.test(mobile) && mobile != "") {
+  if (number_pattern.test(mobile) && mobile != "") {
     $(".error-mess-mob").hide();
     $(ele).removeClass("error");
     $(ele).addClass("mob success");
@@ -343,9 +326,8 @@ function checkAadhar(ele) {
 }
 
 function checkPan(ele) {
-  var pattern = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
   var panNumber = $(ele).val();
-  if (pattern.test(panNumber) && panNumber != "") {
+  if (pan_pattern.test(panNumber) && panNumber != "") {
     $(".error-mess-pan").hide();
     $(".pan").removeClass("error");
     $(".pan").addClass("pan success");
@@ -394,9 +376,8 @@ function checkState(ele) {
 }
 
 function checkCity(ele) {
-  var pattern = /^[a-zA-Z]*$/;
   var city = $(ele).find('.select_city').val();
-  if (pattern.test(city) && city.length>2) {
+  if (city_pattern.test(city) && city.length>2) {
     $(ele).find(".error-mess-city").hide();
     $(ele).removeClass("error");
     $(ele).addClass("city success");
@@ -411,9 +392,8 @@ function checkCity(ele) {
 }
 
 function checkPincode(ele) {
-  var pattern = /^([0-9]){6}?$/;
   var pincode = $(ele).find('.select_pincode').val();
-  if (pattern.test(pincode) && pincode !== "") {
+  if (pincode_pattern.test(pincode) && pincode !== "") {
     $(ele).find(".error-mess-pincode").hide();
     $(ele).removeClass("error");
     $(ele).addClass("pincode success");
@@ -426,8 +406,6 @@ function checkPincode(ele) {
     return false;
   }
 }
-
-
 
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
@@ -478,11 +456,11 @@ function generateRandomOperation() {
    return equation[index];
 }
 
-
 function checkCaptcha() {
    const res = $('#captcha_input').val();
    let resInt = parseInt(res);
    if (isNaN(resInt)) {
+    $('.captcha-error-mess').show();
      $('.captcha-error-mess').text("Please enter captcha");
      return false;
    }
@@ -494,6 +472,7 @@ function checkCaptcha() {
            return true;
        }
        else{
+        $('.captcha-error-mess').show();
         $('.captcha-error-mess').text("Invalid captcha");
         return false;
        }
