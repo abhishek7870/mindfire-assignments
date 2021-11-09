@@ -420,3 +420,10 @@ color: green;
   display: flex;
   margin-bottom: 15px;
 }
+.phone.success{
+  margin-top: 14px;
+}
+.gender.success{
+  margin-top: 16px;
+
+}

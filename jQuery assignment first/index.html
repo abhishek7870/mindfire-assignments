@@ -24,19 +24,19 @@
         <p>Enter your Details Below</p>
         <div class="div1">
             <div class="fname">
-                <input type="text" placeholder="First Name" id="fname" onblur="checkFname(this)"/>
+                <input type="text" placeholder="First Name" id="fname" onblur="check_name(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="error-mess-fname">First name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
             <div class="mname">
-                <input placeholder="Middle Name" id="mname" onblur="checkMname(this)"/>
+                <input placeholder="Middle Name" id="mname" onblur="check_m_name(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="error-mess-mname">Middle name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
             <div class="lname">
-                <input placeholder="Last Name" id="lname" onblur="checkLname(this)"/>
+                <input placeholder="Last Name" id="lname" onblur="check_name(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="error-mess-lname">Last name should only contain alphabets and must be 2-15 characters long.</span>
@@ -45,13 +45,13 @@
         <div class="div2">
             <div class="div2-email-pass">
                 <div class="email">
-                    <input placeholder="Email" type="email" id="email" onblur="checkEmail(this)"/>
+                    <input placeholder="Email" type="email" id="email" onblur="check_email(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-email">Please provide a valid email address.</span>
                 </div>
                 <div class="pass">
-                    <input id="pass" type="password" placeholder="Password" onblur="checkPassword(this)"/>
+                    <input id="pass" type="password" placeholder="Password" onblur="check_password(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-pass">Password should be 4-12 characters long.</span>
@@ -60,13 +60,13 @@
 
             <div class="div2-phone-dob">
                 <div class="phone">
-                    <input placeholder="Phone" type="number" id="phone" onblur="checkNumber(this)"/>
+                    <input placeholder="Phone" type="number" id="phone" onblur="check_number(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-phone">Please provide a valid phone number.</span>
                 </div>
                 <div class="gender">
-                    <select placeholder="gender" name="gender" id="gender" onblur="checkGender(this)">
+                    <select placeholder="gender" name="gender" id="gender" onblur="check_gender(this)">
                         <option value="" disabled selected hidden>
                             Gender
                           </option>
@@ -83,7 +83,7 @@
             <div class="birthday">
                 <p>Date of Birth</p>
                 <div class="dob">
-                    <input placeholder="DOB" type="date" id="date" max="2021-11-30" onblur="checkDate(this)"/>
+                    <input placeholder="DOB" type="date" id="date" max="2021-11-30" onblur="check_date(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-dob">Please provide your DOB.</span>
@@ -92,7 +92,7 @@
             <div class="div2-gender-interest">
                 <p>Hobbies</p>
                 <div class="interest">
-                    <select name="Interests" placeholder="Interests" id="interest" multiple onblur="checkInterest(this)">
+                    <select name="Interests" placeholder="Interests" id="interest" multiple onblur="check_interest(this)">
                         <option value="cricket">Sports</option>
                         <option value="Computer & Software">Computer & Software</option>
                         <option value="Computer & Software">Singing Song</option>
@@ -108,20 +108,20 @@
             </div>
             <p class="per-add">Permanent Address</p>
             <div class="permanent_address">
-                <input class="per-address" type="text" placeholder="Address" id="per-address" onblur="checkParmanentAddress(this)"/>
+                <input class="per-address" type="text" placeholder="Address" id="per-address" onblur="check_address(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="error-mess-address">Please provide your house number and area.</span>
             </div>
             <div class="div2-per">
                 <div class="city">
-                    <input placeholder="City" type="text" id="city" onblur="checkCity1(this)"/>
+                    <input placeholder="City" type="text" id="city" onblur="check_city(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-city">Please provide your city name.City name should only contain alphabets.</span>
                 </div>
                 <div class="state">
-                    <input placeholder="State" type="text" id="state" onblur="checkState1(this)"/>
+                    <input placeholder="State" type="text" id="state" onblur="check_state(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-state">Please provide your state name.State name should only contain alphabets.</span>
@@ -129,13 +129,13 @@
             </div>
             <div class="div2-per">
                 <div class="country">
-                    <input placeholder="Country" type="text" id="country" onblur="checkCountry1(this)"/>
+                    <input placeholder="Country" type="text" id="country" onblur="check_country(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-country">Please provide your country name.Country name should only contain alphabets.</span>
                 </div>
                 <div class="zip">
-                    <input placeholder="Zip Code" type="number"3 id="zip" onblur="checkZipcode1(this)"/>
+                    <input placeholder="Zip Code" type="number"3 id="zip" onblur="check_pincode(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-zip">Please provide your pincode.</span>
@@ -143,7 +143,7 @@
             </div>
             <p class="cur-add">Current Address</p>
             <div class="current_address">
-            <input class="curr-address" type="text" placeholder="Address" id="curr-address" onblur="checkCurrentAddress(this)"/>
+            <input class="curr-address" type="text" placeholder="Address" id="curr-address" onblur="check_address(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
             <span class="error-mess-address">Please provide your house number and area.</span>
@@ -151,13 +151,13 @@
             
             <div class="div2-curr">
                 <div class="city1">
-                    <input placeholder="City" type="text" id="city1" onblur="checkCity2(this)"/>
+                    <input placeholder="City" type="text" id="city1" onblur="check_city(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-city">Please provide your city name.City name should only contain alphabets.</span>
                 </div>
                 <div class="state1">
-                    <input placeholder="State" type="text" id="state1" onblur="checkState2(this)"/>
+                    <input placeholder="State" type="text" id="state1" onblur="check_state(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-state">Please provide your state name.State name should only contain alphabets.</span>
@@ -165,13 +165,13 @@
             </div>
             <div class="div2-curr">
                 <div class="country1">
-                    <input placeholder="Country" type="text" id="country1" onblur="checkCountry2(this)"/>
+                    <input placeholder="Country" type="text" id="country1" onblur="check_country(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-country">Please provide your country name.Country name should only contain alphabets.</span>
                 </div>
                 <div class="zip1">
-                    <input placeholder="Zip Code" type="number" id="zip1" onblur="checkZipcode2(this)"/>
+                    <input placeholder="Zip Code" type="number" id="zip1" onblur="check_pincode(this)"/>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
                     <span class="error-mess-zip">Please provide your pincode.</span>

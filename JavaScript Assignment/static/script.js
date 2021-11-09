@@ -2,6 +2,15 @@ const equation = ["-", "+", "*", "/"];
 let expectOutput = "";
 let captchaEquation = "";
 
+const pincode_pattern = /^([0-9]){6}?$/;
+const address_pattern = /[0-9 -/]{1,7}\s+[\w\s]+/;
+const name_pattern = /^[A-Za-z']+$/;
+const email_pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+const number_pattern = /^[^0-1][0-9]{9}$/;
+const dob_pattern = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
+
+
+
 const form = document.getElementById("form");
 const fname = document.getElementById("fname");
 const mname = document.getElementById("mname");
@@ -96,8 +105,7 @@ function checkInputs() {
 
 function checkName(name) {
   const name_value = name.value.trim();
-  var pattern = /^[A-Za-z']+$/;
-  if (pattern.test(name_value) && name_value.length > 1) {
+  if (name_pattern.test(name_value) && name_value.length > 1) {
     setSuccessMsg(name.parentElement);
     return true;
   } else {
@@ -109,11 +117,10 @@ function checkName(name) {
 
 function checkMname() {
   const mnameValue = mname.value.trim();
-  var pattern = /^[A-Za-z']+$/;
   if (mnameValue.length === 0) {
     mname.parentElement.className="mname";
     return true;
-  } else if (pattern.test(mnameValue) && mnameValue.length > 1) {
+  } else if (name_pattern.test(mnameValue) && mnameValue.length > 1) {
     setSuccessMsg(mname.parentElement);
     return true;
   } else {
@@ -125,8 +132,7 @@ function checkMname() {
 
 function CheckEmail() {
   const emailValue = email.value.trim();
-  var pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
-  if (pattern.test(emailValue) && emailValue.length != 0) {
+  if (email_pattern.test(emailValue) && emailValue.length != 0) {
     setSuccessMsg(email.parentElement);
     return true;
   } else {
@@ -150,8 +156,7 @@ function checkPassword() {
 
 function checkPhoneNumber() {
   const phoneValue = phone.value.trim();
-  var pattern = /^[^0-1][0-9]{9}$/;
-  if (pattern.test(phoneValue)) {
+  if (number_pattern.test(phoneValue)) {
     setSuccessMsg(phone.parentElement);
     return true;
   } else {
@@ -163,8 +168,7 @@ function checkPhoneNumber() {
 
 function checkDob() {
   const dobValue = dob.value.trim();
-  var pattern = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-  if (dobValue === null || !pattern.test(dobValue)) {
+  if (dobValue === null || !dob_pattern.test(dobValue)) {
      setErrorMsg(dob.parentElement);
     return false;
   } else {
@@ -202,8 +206,7 @@ function checkInterest() {
 
 function checkAddress(perAddress) {
   const perAddressValue = perAddress.value.trim();
-  const pattern = /[0-9 -/]{1,7}\s+[\w\s]+/;
-  if (!pattern.test(perAddressValue)) {
+  if (!address_pattern.test(perAddressValue)) {
     setErrorMsg(perAddress.parentElement);
     return false;
   } else {
@@ -215,11 +218,10 @@ function checkAddress(perAddress) {
 
 function checkCity(city) {
   const cityValue = city.value.trim();
-  var pattern = /^[A-Za-z']+$/;
   if (cityValue === "" || cityValue.length < 3) {
     setErrorMsg(city.parentElement);
     return false;
-  } else if (pattern.test(cityValue)) {
+  } else if (name_pattern.test(cityValue)) {
     setSuccessMsg(city.parentElement);
     return true;
   } else {
@@ -231,11 +233,10 @@ function checkCity(city) {
 
 function checkState(state) {
   const StateValue = state.value.trim();
-  var pattern = /^[A-Za-z']+$/;
   if (StateValue === "" || StateValue.length < 3) {
     setErrorMsg(state.parentElement);
     return false;
-  } else if (pattern.test(StateValue)) {
+  } else if (name_pattern.test(StateValue)) {
     setSuccessMsg(state.parentElement);
     return true;
   } else {
@@ -246,12 +247,11 @@ function checkState(state) {
 
 
 function checkCountry(country) {
-  var pattern = /^[A-Za-z']+$/;
   const countryValue = country.value.trim();
   if (countryValue === "" || countryValue.length < 3) {
     setErrorMsg(country.parentElement);
     return false;
-  } else if (pattern.test(countryValue)) {
+  } else if (name_pattern.test(countryValue)) {
     setSuccessMsg(country.parentElement);
     return true;
   } else {
@@ -263,8 +263,7 @@ function checkCountry(country) {
 
 function checkZipCode(zip) {
   const zipValue = zip.value.trim();
-  var pattern = /^([0-9]){6}?$/;
-  if (pattern.test(zipValue) && zipValue.length == 6) {
+  if (pincode_pattern.test(zipValue) && zipValue.length == 6) {
     setSuccessMsg(zip.parentElement);
     return true;
   } else {
