@@ -2,14 +2,14 @@ const equation = ["-", "+", "*", "/"];
 let expectOutput = "";
 let captchaEquation = "";
 
+const city_state_country_pattern = /^[A-Za-z]{2,30}(\s[A-Za-z]{2,30})?$/;
 const pincode_pattern = /^([0-9]){6}?$/;
-const address_pattern = /[0-9 -/]{1,7}\s+[\w\s]+/;
-const name_pattern = /^[A-Za-z']+$/;
-const email_pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+const address_pattern = /^[1-9][0-9]{1,3}(\s[\w,]{1,35})+$/; 
+
+const name_pattern = /^[A-Za-z']{2,15}$/;
+const email_pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})$/;
 const number_pattern = /^[^0-1][0-9]{9}$/;
 const dob_pattern = /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/;
-
-
 
 const form = document.getElementById("form");
 const fname = document.getElementById("fname");
@@ -54,9 +54,9 @@ document.querySelector(".btn").addEventListener("click", (e) => {
 
 function checkInputs() {
   var check_fname = checkName(fname);
-  var check_mname = checkMname();
+  var check_mname = checkName(mname);
   var check_lname = checkName(lname);
-  var check_email = CheckEmail();
+  var check_email = checkEmail();
   var check_password = checkPassword();
   var check_PhoneNumber = checkPhoneNumber();
   var check_dob = checkDob();
@@ -105,7 +105,11 @@ function checkInputs() {
 
 function checkName(name) {
   const name_value = name.value.trim();
-  if (name_pattern.test(name_value) && name_value.length > 1) {
+  if(name.id==="mname" && name_value.length===0){
+    mname.parentElement.className="mname";
+    return true;
+  }
+  if (name_pattern.test(name_value)) {
     setSuccessMsg(name.parentElement);
     return true;
   } else {
@@ -114,25 +118,9 @@ function checkName(name) {
   }
 }
 
-
-function checkMname() {
-  const mnameValue = mname.value.trim();
-  if (mnameValue.length === 0) {
-    mname.parentElement.className="mname";
-    return true;
-  } else if (name_pattern.test(mnameValue) && mnameValue.length > 1) {
-    setSuccessMsg(mname.parentElement);
-    return true;
-  } else {
-    setErrorMsg(mname.parentElement);
-    return false;
-  }
-}
-
-
-function CheckEmail() {
+function checkEmail() {
   const emailValue = email.value.trim();
-  if (email_pattern.test(emailValue) && emailValue.length != 0) {
+  if (email_pattern.test(emailValue)) {
     setSuccessMsg(email.parentElement);
     return true;
   } else {
@@ -168,7 +156,7 @@ function checkPhoneNumber() {
 
 function checkDob() {
   const dobValue = dob.value.trim();
-  if (dobValue === null || !dob_pattern.test(dobValue)) {
+  if (!dob_pattern.test(dobValue)) {
      setErrorMsg(dob.parentElement);
     return false;
   } else {
@@ -204,24 +192,25 @@ function checkInterest() {
 }
 
 
-function checkAddress(perAddress) {
-  const perAddressValue = perAddress.value.trim();
-  if (!address_pattern.test(perAddressValue)) {
-    setErrorMsg(perAddress.parentElement);
+function checkAddress(address) {
+  var address_value = address.value.trim();
+  address_value = address_value.replace(/\s\s+/g, ' ');
+  address.value = address_value;
+  if (!address_pattern.test(address_value)) {
+    setErrorMsg(address.parentElement);
     return false;
   } else {
-    setSuccessMsg(perAddress.parentElement);
+    setSuccessMsg(address.parentElement);
     return true;
   }
 }
 
 
 function checkCity(city) {
-  const cityValue = city.value.trim();
-  if (cityValue === "" || cityValue.length < 3) {
-    setErrorMsg(city.parentElement);
-    return false;
-  } else if (name_pattern.test(cityValue)) {
+  var city_value = city.value.trim();
+  city_value = city_value.replace(/\s\s+/g, ' ');
+  city.value = city_value;
+   if (city_state_country_pattern.test(city_value)) {
     setSuccessMsg(city.parentElement);
     return true;
   } else {
@@ -232,11 +221,10 @@ function checkCity(city) {
 
 
 function checkState(state) {
-  const StateValue = state.value.trim();
-  if (StateValue === "" || StateValue.length < 3) {
-    setErrorMsg(state.parentElement);
-    return false;
-  } else if (name_pattern.test(StateValue)) {
+  var state_value = state.value.trim();
+  state_value = state_value.replace(/\s\s+/g, ' ');
+  state.value = state_value;
+   if (city_state_country_pattern.test(state_value)) {
     setSuccessMsg(state.parentElement);
     return true;
   } else {
@@ -247,11 +235,10 @@ function checkState(state) {
 
 
 function checkCountry(country) {
-  const countryValue = country.value.trim();
-  if (countryValue === "" || countryValue.length < 3) {
-    setErrorMsg(country.parentElement);
-    return false;
-  } else if (name_pattern.test(countryValue)) {
+  var country_value = country.value.trim();
+  country_value = country_value.replace(/\s\s+/g, ' ');
+  country.value = country_value
+  if (city_state_country_pattern.test(country_value)) {
     setSuccessMsg(country.parentElement);
     return true;
   } else {
@@ -262,8 +249,8 @@ function checkCountry(country) {
 
 
 function checkZipCode(zip) {
-  const zipValue = zip.value.trim();
-  if (pincode_pattern.test(zipValue) && zipValue.length == 6) {
+  const zip_value = zip.value.trim();
+  if (pincode_pattern.test(zip_value)) {
     setSuccessMsg(zip.parentElement);
     return true;
   } else {
@@ -288,13 +275,12 @@ function setSuccessMsg(element) {
 
 
 document.querySelector(".refresh").addEventListener("click", function (e) {
-  e.preventDefault();
   generateCaptchaEquation();
   const element = document.getElementById("captcha_input");
-  const element1 = document.getElementById("valid_captcha");
-  const captcha1 = element.parentElement;
-  captcha1.className = "captcha1";
-  element1.className = "valid_captcha";
+  const valid_captcha = document.getElementById("valid_captcha");
+  const captcha_div = element.parentElement;
+  captcha_div.className = "captcha_div";
+  valid_captcha.className = "valid_captcha";
 });
 
 
@@ -361,13 +347,10 @@ function submit() {
   }
 }
 
-
-
 function setErrorForCaptcha(input) {
-  const captcha1 = input.parentElement;
-  captcha1.className = "captcha1";
+  const captcha_div = input.parentElement;
+  captcha_div.className = "captcha_div";
   var valid_captcha = document.getElementById("valid_captcha");
-  console.log(input.value);
   if(input.value.trim().length===0){
      valid_captcha.innerHTML = "Please enter captcha";
   }
@@ -377,15 +360,9 @@ function setErrorForCaptcha(input) {
 }
 
 function setSuccessForCaptcha(input) {
-  const captcha1 = input.parentElement;
-  captcha1.className = "captcha1 success";
+  const captcha_div = input.parentElement;
+  captcha_div.className = "captcha_div success";
   const valid_captcha = document.getElementById("valid_captcha");
   valid_captcha.className = "valid_captcha";
 }
 
-
-function isEmail(email) {
-  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-    email
-  );
-}

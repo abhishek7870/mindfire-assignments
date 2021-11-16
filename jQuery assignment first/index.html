@@ -30,7 +30,7 @@
                 <span class="error-mess-fname">First name should only contain alphabets and must be 2-15 characters long.</span>
             </div>
             <div class="mname">
-                <input placeholder="Middle Name" id="mname" onblur="check_m_name(this)"/>
+                <input placeholder="Middle Name" id="mname" onblur="check_name(this)"/>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <span class="error-mess-mname">Middle name should only contain alphabets and must be 2-15 characters long.</span>
@@ -180,16 +180,16 @@
         </div>
         <div>
             <h1 class="cap">Captcha</h1>
-            <div class="captcha1">
+            <div class="captcha_div">
                 <h1 id="captcha"></h1>
                 <input type="text" id="captcha_input"/>
-                <button id="refresh"class="refresh">Refresh</button>
+                <button type="button" id="refresh"class="refresh">Refresh</button>
                 <i class="fas fa-check-circle"></i>
                  <p class="error_mess" id="valid_captcha"></p>
             </div>
         </div>
 
-        <button class="btn">Submit</button>
+        <button type="submit" class="btn">Submit</button>
     </form>
     <script src="static/script.js"></script>
 </body>

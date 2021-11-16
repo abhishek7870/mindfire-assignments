@@ -336,27 +336,27 @@ color: #495057;
 }
 
 
-.captcha1 i{
+.captcha_div i{
     visibility: hidden;
   }
-  .captcha1.success i.fa-check-circle{
+  .captcha_div.success i.fa-check-circle{
   color: green;
     visibility: visible;
     margin-left: 25px;
       margin-top: -2px;
       font-size: 25px;
   }
-  .valid_captcha,.valid_captcha1,.valid_captcha2{
+  .valid_captcha,.valid_captcha_div,.valid_captcha2{
     visibility: hidden;
   }
-  .valid_captcha.error,.valid_captcha1.error,.valid_captcha2.error{
+  .valid_captcha.error,.valid_captcha_div.error,.valid_captcha2.error{
      visibility: visible;
       margin-top: -3px;
       color: red;
       font-weight: 600;
       font-size: 15px;
   }
-  .captcha1 >input{
+  .captcha_div >input{
     margin-left: 25px;
       height: 32px;
       width: 200px;
@@ -369,7 +369,7 @@ color: #495057;
     padding-top: 10px;
 
   }
-.captcha1
+.captcha_div
 {
   display: flex;
   align-items: center;
