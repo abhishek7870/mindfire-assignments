@@ -279,12 +279,12 @@ body{
   font-size: 20px;
   font-weight: 200px;
 }
-.captcha1{
+.captcha_div{
   display: flex;
     margin-left: 20px;
     align-items: center;
 }
-.captcha1 >input{
+.captcha_div >input{
   margin-left: 25px;
     height: 32px;
     width: 200px;
@@ -298,10 +298,10 @@ body{
     font-size: 15px;
     border: none;
 }
-.captcha1 i{
+.captcha_div i{
   visibility: hidden;
 }
-.captcha1.success i.fa-check-circle{
+.captcha_div.success i.fa-check-circle{
 color: green;
   visibility: visible;
   margin-left: 25px;

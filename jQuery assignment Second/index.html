@@ -27,36 +27,36 @@
             <input type="text" id="name" onblur="checkName(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-name"></span>
+            <span class="error-mess-name error-msg"></span>
           </div>
           <div class="email">
             <h5>Email</h5>
             <input type="text" id="email" onblur="checkEmail(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-email"></span>
+            <span class="error-mess-email error-msg"></span>
           </div>
           <div id="primary-mob" class="mob">
             <h5>Mobile</h5>
-            <input type="number" id="mob" onblur="checkMobileNumbers()"/>
+            <input type="number" id="mob" onblur="checkMobile(this)"/>
             <i id="add-phone" class="fas fa-plus-circle"></i>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-mob"></span>
+            <span class="error-mess-mob  error-msg"></span>
           </div>
           <div class="pan">
             <h5>Pan Number</h5>
             <input type="text" id="pan" onblur="checkPan(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-pan"></span>
+            <span class="error-mess-pan error-msg"></span>
           </div>
           <div class="aadhar">
             <h5>Aadhar Number</h5>
             <input type="text" id="aadhar" onblur="checkAadhar(this)"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-aadhar"></span>
+            <span class="error-mess-aadhar error-msg"></span>
           </div>
         </div>
       </div>
@@ -75,7 +75,7 @@
             </select>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-country"></span>
+            <span class="error-mess-country error-msg"></span>
           </div>
           <div class="state">
             <h5>State</h5>
@@ -87,21 +87,21 @@
             </select>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-state"></span>
+            <span class="error-mess-state error-msg"></span>
           </div>
           <div class="city">
             <h5>City</h5>
             <input type="text" value="" id="city" class="select_city"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-city"></span>
+            <span class="error-mess-city error-msg"></span>
           </div>
           <div class="pincode">
             <h5>Pincode</h5>
             <input type="number" value="" id="pincode" class="select_pincode"/>
             <i class="fas fa-check-circle"></i>
             <i class="fas fa-exclamation-circle"></i>
-            <span class="error-mess-pincode"></span>
+            <span class="error-mess-pincode error-msg"></span>
           </div>
         </div>
       <button class="add-link" id="add-address">Add Address</button>
@@ -109,15 +109,15 @@
     </div>
     <div class="btn-submit">
       <h1 class="cap">Captcha</h1>
-            <div class="captcha1">
+            <div class="captcha_div">
                 <h1 id="captcha"></h1>
                 <input type="text" id="captcha_input"/>
-                <button class="refresh">Refresh</button>
+                <button type="button" class="refresh">Refresh</button>
                  <i class="fas fa-check-circle"></i>
-                 <p class="captcha-error-mess"></p>
+                 <p class="captcha-error-mess error-msg"></p>
             </div>
 
-       <button id="submit">Submit</button>
+       <button type="submit" id="submit">Submit</button>
     </div>
   </div>
   <div class="emp-details-main">
