@@ -5,11 +5,11 @@ const equation = ["-", "+", "*", "/"];
 let expectOutput = "";
 let captchaEquation = "";
 
-const full_name_pattern = /^[A-Za-z]{2,15}(\s[A-Za-z]{2,15})?(\s[A-Za-z]{2,15})?$/;
+const full_name_pattern  = /^[A-Za-z]{2,15}(\s[A-Za-z]{2,15})?(\s[A-Za-z]{2,15})?$/;
 const city_pattern = /^[A-Za-z]{2,30}(\s[A-Za-z]{2,30})?$/;
 const email_pattern = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})$/;
 const number_pattern = /^[^0-1][0-9]{9}$/;
-const pan_pattern = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}?$/;
+const pan_pattern = /^([a-zA-Z]){5}([0-9]){4}([a-zA-Z]){1}$/;
 const pincode_pattern = /^\d{6}$/;
 const aadhar_pattern = /^\d{12}$/;
 

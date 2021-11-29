@@ -1,0 +1,177 @@
+create database Employee;
+
+use Employee;
+
+CREATE TABLE [dbo].[tblEmp](
+    [ntEmpID] [bigint] IDENTITY(1,1) NOT NULL PRIMARY KEY,
+    [vcName] [varchar](100) NULL,
+    [vcMobieNumer] [varchar](15) NULL,
+    [vcSkills] [varchar](max) NULL,
+    [moSalary] [money] DEFAULT(0) NOT NULL,
+    [ntLevel] [bit] DEFAULT(0) NOT NULL
+)
+
+INSERT [dbo].[tblEmp] VALUES
+    ('Scott','123-456-3456','CF,HTML,JavaScript',50,0),
+    ('Greg',NULL,'HTML5,JavaScript,Jquery',80,0),
+    ('David','123-456-3458','Sql,JavaScript',30,1),
+    ('Alan','123-456-3459','C#,VB,XQuery',60,1),
+    ('Jhon',NULL,'XML,HTML',80,1),
+    ('Alan','123-456-3461','Sql,Oracle,DB2',70,1)
+
+-- 1. Write a single sql query with following information's:
+
+-- a. Total number number of employees
+-- b. Minimum salary received by any employees.
+-- c. Total distinct ntLevel 
+
+ select count(*), min(moSalary), count(distinct ntLevel) from tblEmp;
+
+------------------------------------------------------------------------------------------
+
+ /*2. Correct this query:
+    SELECT [ntEmpID], E.[vcName],tblEmp.[vcMobieNumer]
+    FROM tblEmp E*/
+
+
+
+SELECT E.[ntEmpID], E.[vcName],E.[vcMobieNumer] FROM tblEmp E
+
+------------------------------------------------------------------------------------------
+
+/*3. Write a single select query which satisfies the following conditions:
+    a. If any employee does not have a phone number then select that employee if ntLevel  equal to 1
+    b. else select those employees whose ntLevel is equal to 0 */
+
+
+SELECT * FROM tblEmp WHERE (ntLevel = 1 and vcMobieNumer is null) or ntLevel = 0;
+
+------------------------------------------------------------------------------------------
+
+-- 4. Write a sql query which displays those employee data first, who knows javascript.
+
+select * from tblEmp 
+order by(case
+			when vcSkills not like '%JavaScript%' then 1
+			else 0
+		end);
+
+------------------------------------------------------------------------------------------
+
+/*5. Explain the TOP clause in the following sql queries?
+    
+    a. SELECT TOP(1) * FROM tblEmp 
+    b. SELECT TOP(SELECT 3/2) * FROM tblEmp 
+    c. SELECT TOP(1) PERCENT * FROM tblEmp
+    d. SELECT TOP(1) WITH TIES * FROM tblEmp ORDER BY vcName
+
+answer
+ a. Selects the Top 1 tuple from table tblEmp
+ b. Selects the Top 1 tuple from table tblEmp
+ c. Selects the Top 1 percent tuples from table tblEmp with respect to the tblEmp Size
+ d. Selects the all Top 1 tuple from table tblEmp 
+
+ */
+ ------------------------------------------------------------------------------------------
+
+ /*6. When I executed this query:       
+   SELECT [vcName],[vcMobieNumer] FROM [dbo].[tblEmp] GROUP BY [vcName]     
+    I got following error message:
+    Column 'dbo.tblEmp.vcMobieNumer' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.
+    Can you explain above error message? Write at least two possible solutions. */
+
+SELECT vcName,vcMobieNumer 
+FROM tblEmp 
+GROUP BY vcName,vcMobieNumer
+-- explaination :- when we are selecting multiple columns in a table then apply order by in columns you must apply order by of all columns.
+
+SELECT vcName
+FROM tblEmp 
+GROUP BY vcName;
+------------------------------------------------------------------------------------------
+
+-- 7. Write a sql query to get the ntLevel of the employees getting salary greater than average salary. 
+
+select vcName, ntLevel 
+from tblEmp
+where moSalary > (select AVG(moSalary) from tblEmp);
+
+---------------------------------------------------------------------------------------------------------------------------
+
+use AdventureWorks2014;
+
+---------------------------------------------------------------------------------------------------------------------------
+-- 8. Write a query to get the count of employees with a valid Suffix 
+select count(Suffix) from Person.Person where Suffix is Not Null;
+
+----------------------------------------------------------------------------------------------------------------------------
+-- 9. Using BusinessEntityAddress table (and other tables as required), list the full name of people living in the city of Frankfurt.
+--select COALESCE(person.FirstName, person.MiddleName , person.LastName)
+
+select person.FirstName +' '+  ISNULL(person.MiddleName,'') +' ' + ISNULL(person.LastName,'')
+from ((Person.BusinessEntityAddress as bea
+Inner join Person.Address on Person.Address.AddressID = bea.AddressID and Person.Address.City = 'Frankfurt')
+Inner join Person.Person as person on person.BusinessEntityID = bea.BusinessEntityID);
+
+
+----------------------------------------------------------------------------------------------------------------------------
+-- 10. "Single Item Order" is a customer order where only one item is ordered. Show the SalesOrderID and the UnitPrice for every Single Item Order.
+
+select SalesOrderID,UnitPrice
+from Sales.SalesOrderDetail
+where SalesOrderID In (
+select SalesOrderID
+from Sales.SalesOrderDetail
+group by SalesOrderID 
+having Count(SalesOrderID) =1) and OrderQty =1;
+
+----------------------------------------------------------------------------------------------------------------------------
+-- 11. Show the product description for culture 'fr' for product with ProductID 736.
+
+select pd.Description
+from Production.ProductDescription as pd
+join Production.ProductModelProductDescriptionCulture as ppdc
+on pd.ProductDescriptionID = ppdc.ProductDescriptionID
+join Production.ProductModel as pm
+on ppdc.ProductModelID = pm.ProductModelID
+join Production.Product as p
+on pm.ProductModelID = p.ProductModelID
+where ppdc.CultureID = 'fr' and p.ProductID = '736';
+
+
+----------------------------------------------------------------------------------------------------------------------------
+-- 12. Show OrderQty, the Name and the ListPrice of the order made by CustomerID 635
+
+select sod.OrderQty , p.ListPrice ,p.Name
+from Sales.SalesOrderDetail as sod
+join Sales.SalesOrderHeader as soh
+on sod.SalesOrderID = soh.SalesOrderID
+join Production.Product as p
+on p.ProductID = sod.ProductID
+where CustomerID = 635;
+
+
+-----------------------------------------------------------------------------------------------------------------------------
+-- 13. How many products in ProductSubCategory 'Cranksets' have been sold to an address in 'London'?
+
+select sum(orderDetails.OrderQty)
+from Production.ProductSubcategory as subcategory
+join Production.Product as product on subcategory.ProductSubcategoryID = product.ProductSubcategoryID
+join Sales.SalesOrderDetail as orderDetails on product.ProductID = orderDetails.ProductID
+join Sales.SalesOrderHeader as soh on orderDetails.SalesOrderID = soh.SalesOrderID
+join Person.Address on soh.ShipToAddressID = Address.AddressID
+where Address.City = 'London' AND subcategory.Name = 'Cranksets';
+
+----------------------------------------------------------------------------------------------------------------------------
+-- 14. Describe Char, Varchar and NVarChar datatypes with examples. 
+
+--char:-  A FIXED length string can contain letters, numbers, and special characters.The size parameter specifies the column length in characters - can be from 0 to 255. Default is 1.
+--example  FirstName char(10)
+--varchar:-A VARIABLE length string can contain letters, numbers, and special characters. The size parameter specifies the maximum column length in characters - can be from 0 to 65535
+--example Name varchar(50)
+--NVarChar:- NVARCHAR data type is used to store variable-length, Unicode string data.syntax is NVARCHAR(n) n defines the string length that ranges from 1 to 4,000. If you don’t specify the string length, its default value is 1.
+--example Name NVARCHAR(20)
+
+----------------------------------------------------------------------------------------------------------------------------
+
+
