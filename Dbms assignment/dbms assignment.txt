@@ -80,6 +80,13 @@ answer
     Column 'dbo.tblEmp.vcMobieNumer' is invalid in the select list because it is not contained in either an aggregate function or the GROUP BY clause.
     Can you explain above error message? Write at least two possible solutions. */
 
+--solution
+-- As we know that “group by” return single row, so we need to apply an aggregate function to columns not used in group by clause to avoid this error.
+
+SELECT vcName,count(vcMobieNumer) 
+FROM tblEmp 
+GROUP BY vcName
+
 SELECT vcName,vcMobieNumer 
 FROM tblEmp 
 GROUP BY vcName,vcMobieNumer
@@ -102,13 +109,23 @@ use AdventureWorks2014;
 
 ---------------------------------------------------------------------------------------------------------------------------
 -- 8. Write a query to get the count of employees with a valid Suffix 
-select count(Suffix) from Person.Person where Suffix is Not Null;
+select count(*) from Person.Person
+select count(*) from Person.Person where Suffix is Not Null;
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- 9. Using BusinessEntityAddress table (and other tables as required), list the full name of people living in the city of Frankfurt.
 --select COALESCE(person.FirstName, person.MiddleName , person.LastName)
 
-select person.FirstName +' '+  ISNULL(person.MiddleName,'') +' ' + ISNULL(person.LastName,'')
+
+select person.FirstName + 
+       CASE 
+         WHEN LEN(person.MiddleName) > 0 THEN ' ' + person.MiddleName 
+		 ELSE ''
+       END +
+       CASE 
+         WHEN LEN(person.LastName) > 0 THEN ' ' + person.LastName
+         ELSE ''
+       END 
 from ((Person.BusinessEntityAddress as bea
 Inner join Person.Address on Person.Address.AddressID = bea.AddressID and Person.Address.City = 'Frankfurt')
 Inner join Person.Person as person on person.BusinessEntityID = bea.BusinessEntityID);
@@ -123,7 +140,17 @@ where SalesOrderID In (
 select SalesOrderID
 from Sales.SalesOrderDetail
 group by SalesOrderID 
-having Count(SalesOrderID) =1) and OrderQty =1;
+having Count(SalesOrderID)=1)
+and OrderQty =1
+
+-- Without using sub-query
+
+select s1.SalesOrderID, avg(s1.UnitPrice)
+from Sales.SalesOrderDetail s1
+inner join Sales.SalesOrderDetail s2 on s1.SalesOrderID = s2.SalesOrderID and s1.OrderQty=1
+group by s1.SalesOrderID
+having Count(s1.SalesOrderID)=1
+order by s1.SalesOrderID
 
 ----------------------------------------------------------------------------------------------------------------------------
 -- 11. Show the product description for culture 'fr' for product with ProductID 736.
@@ -167,11 +194,10 @@ where Address.City = 'London' AND subcategory.Name = 'Cranksets';
 
 --char:-  A FIXED length string can contain letters, numbers, and special characters.The size parameter specifies the column length in characters - can be from 0 to 255. Default is 1.
 --example  FirstName char(10)
---varchar:-A VARIABLE length string can contain letters, numbers, and special characters. The size parameter specifies the maximum column length in characters - can be from 0 to 65535
+--varchar:-A VARIABLE length string can contain letters, numbers, and special characters. The size parameter specifies the maximum column length in characters - can be from 0 to 65535.varchar is stored as regular 8-bit data(1 byte per character) 
 --example Name varchar(50)
---NVarChar:- NVARCHAR data type is used to store variable-length, Unicode string data.syntax is NVARCHAR(n) n defines the string length that ranges from 1 to 4,000. If you don’t specify the string length, its default value is 1.
+--NVarChar:- NVARCHAR data type is used to store variable-length, Unicode string data.syntax is NVARCHAR(n) n defines the string length that ranges from 1 to 4,000. If you don’t specify the string length, its default value is 1.nvarchar stores data at 2 bytes per character
 --example Name NVARCHAR(20)
 
 ----------------------------------------------------------------------------------------------------------------------------
-
 
